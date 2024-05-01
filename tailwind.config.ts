@@ -1,3 +1,4 @@
+import { theme } from "@/lib/theme";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -7,7 +8,7 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
+    extend: { ...theme,
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
