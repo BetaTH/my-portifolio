@@ -2,7 +2,7 @@ export const colors = {
   body: '#282C33',
   primary: '#C778DD',
   title: '#FFFFFF',
-  'body-text': '#ABB2BF',
+  'body-text': '#E6E6E6',
   gray: {
     50: '#F9FAFB',
     100: '#F3F4F6',
