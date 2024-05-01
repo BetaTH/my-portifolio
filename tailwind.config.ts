@@ -1,4 +1,4 @@
-import { theme } from '@/lib/theme'
+import { theme } from './src/lib/theme'
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -10,6 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       ...theme,
+      fontFamily: {
+        sans: ['var(--font-fira-sans)'],
+        // mono: ['var(--font-roboto-mono)'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

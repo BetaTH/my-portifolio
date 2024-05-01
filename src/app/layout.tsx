@@ -6,7 +6,7 @@ const firaCode = FiraCode({ subsets: ['latin'] })
 const firaSans = FiraSans({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--fira-sans',
+  variable: '--font-fira-sans',
 })
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={(firaCode.className, firaSans.variable)}>
+      <body className={`${firaCode.className} ${firaSans.variable}`}>
         {children}
       </body>
     </html>

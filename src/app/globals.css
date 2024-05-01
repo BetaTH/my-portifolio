@@ -8,6 +8,18 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+@layer base {
+  body {
+    @apply h-full;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    @apply h-full scroll-smooth;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
