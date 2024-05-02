@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: 'Thielson Almendra | Portifolio',
   description:
     'Portfólio de um desenvolvedor full stack. Veja meus projetos em desenvolvimento web!',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
