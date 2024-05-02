@@ -20,7 +20,7 @@ const config: Config = {
         // => @media (max-width: 767px) { ... }
         '2sm': { max: '729px' },
         // => @media (max-width: 729px) { ... }
-        sm: { max: '639px' },
+        sm: { max: '641px' },
         // => @media (max-width: 639px) { ... }
       },
     },

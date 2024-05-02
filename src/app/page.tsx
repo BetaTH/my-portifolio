@@ -32,10 +32,10 @@ export default function Home() {
               </p>
               <SocialCard />
             </div>
-            <HeroImage className="w-[25.625rem] h-[18.625rem]" />
+            <HeroImage className="w-[25.625rem] h-[18.625rem] sm:w-full" />
           </section>
           <Section id="skills" title="Skills">
-            <div className="grid grid-cols-5 pt-5 gap-[3.125rem] 2sm:grid-cols-3 2md:grid-cols-4 w-fit mx-auto">
+            <div className="grid grid-cols-5 pt-5 gap-[3.125rem] 2sm:grid-cols-3 sm:!grid-cols-2 2md:grid-cols-4 w-fit mx-auto">
               {skills.map((skill) => (
                 <SkillCard key={skill.name} {...skill} />
               ))}
@@ -43,7 +43,7 @@ export default function Home() {
           </Section>
           <Section id="about" title="About Me">
             <div className="w-full flex gap-[3.75rem] items-center justify-center md:flex-col">
-              <AboutImage className="w-[25rem] h-[23.5625rem]" />
+              <AboutImage className="w-[25rem] h-[23.5625rem] sm:w-full" />
               <div className="flex max-w-full flex-col gap-3 text-base/5 tracking-[0.015em] font-sans w-[32.375rem] text-body-text">
                 <p>
                   Com uma paixão por resolver problemas e criar soluções
@@ -90,7 +90,7 @@ export default function Home() {
           </p>
           <div className="flex items-center mt-8 gap-5 font-sans">
             <IconEmail className="size-9" />
-            <span className="text-title text-4xl tracking-tight">
+            <span className="text-title text-4xl sm:text-2xl tracking-tight">
               thielson12@gmail.com
             </span>
           </div>
