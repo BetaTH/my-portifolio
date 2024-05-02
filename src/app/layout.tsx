@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description:
     'Portfólio de um desenvolvedor full stack. Veja meus projetos em desenvolvimento web!',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.png',
   },
 }
 
