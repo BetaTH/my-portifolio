@@ -12,12 +12,16 @@ const config: Config = {
       ...theme,
       fontFamily: {
         sans: ['var(--font-fira-sans)'],
-        // mono: ['var(--font-roboto-mono)'],
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      screens: {
+        '2md': { max: '859px' },
+        // => @media (max-width: 859px) { ... }
+        md: { max: '767px' },
+        // => @media (max-width: 767px) { ... }
+        '2sm': { max: '729px' },
+        // => @media (max-width: 729px) { ... }
+        sm: { max: '639px' },
+        // => @media (max-width: 639px) { ... }
       },
     },
   },

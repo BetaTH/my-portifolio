@@ -14,8 +14,8 @@ export default function Home() {
       <Header />
       <div className="px-6">
         <div className="mx-auto w-[65rem] max-w-full">
-          <section className="py-12 flex justify-between items-center">
-            <div className="w-[37rem] flex flex-col gap-[2.125rem]">
+          <section className="py-12 flex justify-between items-center gap-9 md:flex-col-reverse">
+            <div className="w-[37rem] max-w-full flex flex-col gap-[2.125rem]">
               <h1 className="text-[2.125rem]/[2.25rem] font-semibold text-title">
                 Olá, <span className="text-primary">Thielson Almendra </span>
                 aqui!
@@ -35,16 +35,16 @@ export default function Home() {
             <HeroImage className="w-[25.625rem] h-[18.625rem]" />
           </section>
           <Section id="skills" title="Skills">
-            <div className="grid grid-cols-5 pt-5 gap-[3.125rem] w-fit mx-auto">
+            <div className="grid grid-cols-5 pt-5 gap-[3.125rem] 2sm:grid-cols-3 2md:grid-cols-4 w-fit mx-auto">
               {skills.map((skill) => (
                 <SkillCard key={skill.name} {...skill} />
               ))}
             </div>
           </Section>
           <Section id="about" title="About Me">
-            <div className="w-full flex gap-[3.75rem] items-center justify-center">
+            <div className="w-full flex gap-[3.75rem] items-center justify-center md:flex-col">
               <AboutImage className="w-[25rem] h-[23.5625rem]" />
-              <div className="flex flex-col gap-3 text-base/5 tracking-[0.015em] font-sans w-[32.375rem] text-body-text">
+              <div className="flex max-w-full flex-col gap-3 text-base/5 tracking-[0.015em] font-sans w-[32.375rem] text-body-text">
                 <p>
                   Com uma paixão por resolver problemas e criar soluções
                   eficientes iniciei minha jornada profissional em 2021 como

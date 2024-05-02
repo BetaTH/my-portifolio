@@ -17,12 +17,14 @@
 
   html {
     @apply h-full scroll-smooth;
+    font-size: calc(100vw / 565 * 16);
   }
 
   /* html {
     scroll-behavior: smooth;
-    font-size: calc(100vw / 390 * 16);
+    
   } */
+
   @media screen and (min-width: 640px) {
     html {
       font-size: calc(1440px / 1440 * 16);
