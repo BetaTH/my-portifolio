@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${firaCode.className} ${firaSans.variable}`}>
+      <body className={`${firaCode.className} ${firaSans.variable} relative`}>
         {children}
       </body>
     </html>
