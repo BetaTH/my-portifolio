@@ -4,6 +4,9 @@ export const colors = {
   title: '#FFFFFF',
   'body-text': '#E6E6E6',
   gray: {
+    dark: {
+      600: '#D1D5DB',
+    },
     50: '#F9FAFB',
     100: '#F3F4F6',
     200: '#E5E7EB',

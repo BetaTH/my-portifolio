@@ -1,5 +1,7 @@
 import { SkillCard } from '@/components/cards/skill-card'
 import { SocialCard } from '@/components/cards/social-card'
+import { Footer } from '@/components/layout/footer'
+import { Header } from '@/components/layout/header'
 import { Section } from '@/components/section'
 import { AboutImage } from '@/components/svg-components/about-image'
 import { HeroImage } from '@/components/svg-components/hero-image'
@@ -8,7 +10,8 @@ import { skills } from '@/lib/utils/skill-data'
 
 export default function Home() {
   return (
-    <main className="bg-body pt-[4.75rem]">
+    <main id={'home'} className="bg-body pt-[4.75rem]">
+      <Header />
       <div className="px-6">
         <div className="mx-auto w-[65rem] max-w-full">
           <section className="py-12 flex justify-between items-center">
@@ -74,7 +77,10 @@ export default function Home() {
         </div>
       </div>
       <div className="px-6 bg-gray-800">
-        <section className="mx-auto w-[65rem] max-w-full py-20 flex items-center flex-col text-center">
+        <section
+          id="contact"
+          className="mx-auto w-[65rem] max-w-full py-20 flex items-center flex-col text-center"
+        >
           <h2 className="text-[2rem]/[2.125rem] text-primary mb">
             Entre em Contato!
           </h2>
@@ -94,6 +100,7 @@ export default function Home() {
           <SocialCard />
         </section>
       </div>
+      <Footer />
     </main>
   )
 }
