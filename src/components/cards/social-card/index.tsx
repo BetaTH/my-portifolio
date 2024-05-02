@@ -1,4 +1,4 @@
-import { SocialButton } from '@/components/social-button'
+import { SocialButton } from '@/components/buttons/social-button'
 import { IconDiscord } from '@/components/svg-components/icon-discord'
 import { IconGitHub } from '@/components/svg-components/icon-github'
 import { IconLinkedIn } from '@/components/svg-components/icon-linkedin'

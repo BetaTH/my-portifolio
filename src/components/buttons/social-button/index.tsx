@@ -9,7 +9,7 @@ interface SocialButtonProps {
 export function SocialButton({ href, icon: Icon }: SocialButtonProps) {
   return (
     <Link href={href} target="_blank">
-      <Icon className="size-8" />
+      <Icon className="size-8 text-gray-500 hover:text-primary transition-colors" />
     </Link>
   )
 }
