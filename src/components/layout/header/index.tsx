@@ -15,8 +15,10 @@ const navigation = [
 export function Header() {
   const [isActive, setIsActive] = useState(false)
   const toggleMenu = () => {
-    setIsActive(!isActive)
-    document.body.classList.toggle('overflow-hidden')
+    if (window.innerWidth < 729) {
+      setIsActive(!isActive)
+      document.body.classList.toggle('2sm:overflow-hidden')
+    }
   }
   return (
     <>
