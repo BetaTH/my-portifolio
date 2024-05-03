@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 import { Fira_Code as FiraCode, Fira_Sans as FiraSans } from 'next/font/google'
-import './globals.css'
-import { getCurrentLocale, getScopedI18n } from '@/lib/locale/server'
+import '../globals.css'
+import {
+  getCurrentLocale,
+  getScopedI18n,
+  getStaticParams,
+} from '@/lib/locale/server'
 import LocaleProvider from '@/components/layout/locale-provider'
 
 const firaCode = FiraCode({ subsets: ['latin'] })
@@ -10,6 +14,10 @@ const firaSans = FiraSans({
   subsets: ['latin'],
   variable: '--font-fira-sans',
 })
+
+export function generateStaticParams() {
+  return getStaticParams()
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getScopedI18n('pages.home.metadata')

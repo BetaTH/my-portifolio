@@ -8,8 +8,14 @@ import { HeroImage } from '@/components/svg-components/hero-image'
 import { IconEmail } from '@/components/svg-components/icon-email'
 import { getScopedI18n } from '@/lib/locale/server'
 import { skills } from '@/lib/utils/skill-data'
+import { setStaticParamsLocale } from 'next-international/server'
 
-export default async function Home() {
+export default async function Home({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  setStaticParamsLocale(locale)
   const t = await getScopedI18n('pages.home')
   return (
     <main id={'home'} className="bg-body pt-[4.75rem]">
