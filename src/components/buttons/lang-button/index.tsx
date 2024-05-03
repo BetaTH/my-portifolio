@@ -31,7 +31,7 @@ export function LangButton() {
   const { name } = languageSelected()
   return (
     <div className="relative z-50">
-      <Button className="px-2 z-0">
+      <Button className="px-2 z-0 sm:px-3">
         <span>{name}</span>
         <ChevronDown />
       </Button>
@@ -48,7 +48,7 @@ export function LangButton() {
           .map(([key, { id }]) => (
             <Button
               key={id}
-              className="w-full justify-start px-2"
+              className="w-full justify-start px-2 sm:px-3"
               onClick={() => {
                 isOpen && setIsOpen(false)
                 id !== currentLanguage && toggleLanguage(id)

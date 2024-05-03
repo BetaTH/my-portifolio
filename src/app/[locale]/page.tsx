@@ -25,7 +25,7 @@ export default async function Home() {
                 <br />
                 <span className="text-primary">{t('hero.title04')}</span>
               </h1>
-              <p className="text-base text-body-text font-sans tracking-[0.015em]">
+              <p className="text-base text-body-text font-sans tracking-[0.015em] 2sm:text-lg">
                 {t('hero.descripiton')}
               </p>
               <SocialCard />
@@ -42,7 +42,7 @@ export default async function Home() {
           <Section id="about" title={t('about.name')}>
             <div className="w-full flex gap-[3.75rem] items-center justify-center md:flex-col">
               <AboutImage className="w-[25rem] h-[23.5625rem] sm:w-full" />
-              <div className="flex max-w-full flex-col gap-3 text-base/5 tracking-[0.015em] font-sans w-[32.375rem] text-body-text">
+              <div className="flex max-w-full flex-col gap-3 text-base/5 2sm:text-lg tracking-[0.015em] font-sans w-[32.375rem] text-body-text">
                 <p>{t('about.about01')}</p>
                 <p>{t('about.about02')}</p>
                 <p>{t('about.about03')}</p>
