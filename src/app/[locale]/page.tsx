@@ -6,9 +6,11 @@ import { Section } from '@/components/section'
 import { AboutImage } from '@/components/svg-components/about-image'
 import { HeroImage } from '@/components/svg-components/hero-image'
 import { IconEmail } from '@/components/svg-components/icon-email'
+import { getScopedI18n } from '@/lib/locale/server'
 import { skills } from '@/lib/utils/skill-data'
 
-export default function Home() {
+export default async function Home() {
+  const t = await getScopedI18n('pages.home')
   return (
     <main id={'home'} className="bg-body pt-[4.75rem]">
       <Header />
@@ -17,18 +19,14 @@ export default function Home() {
           <section className="py-12 flex justify-between items-center gap-9 md:flex-col-reverse">
             <div className="w-[37rem] max-w-full flex flex-col gap-[2.125rem]">
               <h1 className="text-[2.125rem]/[2.25rem] font-semibold text-title">
-                Olá, <span className="text-primary">Thielson Almendra </span>
-                aqui!
+                {t('hero.title01')}{' '}
+                <span className="text-primary">{t('hero.title02')} </span>
+                {t('hero.title03')}
                 <br />
-                <span className="text-primary">Desenvolvedor Full Stack</span>
+                <span className="text-primary">{t('hero.title04')}</span>
               </h1>
               <p className="text-base text-body-text font-sans tracking-[0.015em]">
-                Com experiência, principalmente no desenvolvimento front-end de
-                páginas web, também tenho desenvolvido funcionalidades no
-                back-end. Sempre em busca de novos desafios, compartilho aqui
-                alguns dos projetos nos quais tenho trabalhado durante essa
-                jornada. Fique a vontade para explorar e descobrir um pouco mais
-                sobre mim!!
+                {t('hero.descripiton')}
               </p>
               <SocialCard />
             </div>
@@ -41,35 +39,14 @@ export default function Home() {
               ))}
             </div>
           </Section>
-          <Section id="about" title="About Me">
+          <Section id="about" title={t('about.name')}>
             <div className="w-full flex gap-[3.75rem] items-center justify-center md:flex-col">
               <AboutImage className="w-[25rem] h-[23.5625rem] sm:w-full" />
               <div className="flex max-w-full flex-col gap-3 text-base/5 tracking-[0.015em] font-sans w-[32.375rem] text-body-text">
-                <p>
-                  Com uma paixão por resolver problemas e criar soluções
-                  eficientes iniciei minha jornada profissional em 2021 como
-                  analista de dados, mas foi em 2023 que descobri minha
-                  verdadeira vocação no desenvolvimento web.
-                </p>
-                <p>
-                  Desde então, mergulhei de cabeça nesse universo fascinante e
-                  tenho me encantado com cada linha de código que escrevo.
-                  Sempre fui movido pelo desafio de encontrar as melhores
-                  soluções, evitando ao máximo a criação de complexidades
-                  desnecessárias.
-                </p>
-                <p>
-                  Atualmente, atuo como desenvolvedor web e analista de dados
-                  freelancer, buscando constantemente aprimorar minhas
-                  habilidades e expandir meu conhecimento. Fora do mundo
-                  profissional, dedico meu tempo à leitura, à prática de
-                  atividades físicas e simplesmente desfrutando de momentos de
-                  tranquilidade.
-                </p>
-                <p>
-                  Estou sempre aberto a novas oportunidades e desafios
-                  emocionantes.
-                </p>
+                <p>{t('about.about01')}</p>
+                <p>{t('about.about02')}</p>
+                <p>{t('about.about03')}</p>
+                <p>{t('about.about04')}</p>
               </div>
             </div>
           </Section>
@@ -82,11 +59,10 @@ export default function Home() {
           className="mx-auto w-[65rem] max-w-full py-20 flex items-center flex-col text-center"
         >
           <h2 className="text-[2rem]/[2.125rem] text-primary mb">
-            Entre em Contato!
+            {t('contact.text01')}
           </h2>
           <p className="text-xl/6 text-title max-w-[30.375rem] mt-2 font-sans">
-            Sinta-se a vontade para me mandar uma mensagem caso tenha gostado do
-            que viu!!
+            {t('contact.text02')}
           </p>
           <div className="flex items-center mt-8 gap-5 font-sans">
             <IconEmail className="size-9" />
@@ -95,7 +71,7 @@ export default function Home() {
             </span>
           </div>
           <p className="text-base text-body-text mt-8 mb-3 font-sans">
-            Tambem posso ser encontrado nessas plataformas:
+            {t('contact.text03')}
           </p>
           <SocialCard />
         </section>

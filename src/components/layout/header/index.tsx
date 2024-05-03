@@ -3,18 +3,19 @@ import { Button } from '@/components/buttons/button'
 import { HomeButton } from '@/components/buttons/home-button'
 import { LangButton } from '@/components/buttons/lang-button'
 import { MenuButton } from '@/components/buttons/menu-button'
+import { useScopedI18n } from '@/lib/locale/client'
 import { cn } from '@/lib/utils/cn'
 import Link from 'next/link'
 import { useState } from 'react'
 
-const navigation = [
-  { name: 'Skills', href: 'skills' },
-  { name: 'About Me', href: 'about' },
-  //   { name: 'Projects', href: 'about' },
-  { name: 'Contact', href: 'contact' },
+const navigation: ['skills', 'about', 'contact'] = [
+  'skills',
+  'about',
+  'contact',
 ]
 
 export function Header() {
+  const t = useScopedI18n('header')
   const [isActive, setIsActive] = useState(false)
   const toggleMenu = () => {
     if (window.innerWidth < 729) {
@@ -49,13 +50,13 @@ export function Header() {
             >
               <ul className="flex gap-6 2sm:flex-col items-center justify-center">
                 {navigation.map((item) => (
-                  <li key={item.name}>
+                  <li key={item}>
                     <Link
                       onClick={toggleMenu}
-                      href={`#${item.href}`}
+                      href={`#${item}`}
                       className="text-gray-dark-600 font-medium text-base 2sm:text-2xl hover:text-primary transition-colors"
                     >
-                      {item.name}
+                      {t(item)}
                     </Link>
                   </li>
                 ))}
@@ -63,7 +64,7 @@ export function Header() {
               <div className="h-6 border border-gray-600 2sm:h-0 2sm:w-[10rem]" />
               <div className="flex gap-6">
                 <LangButton />
-                <Button>Download CV</Button>
+                <Button>{t('download')}</Button>
               </div>
             </nav>
           </div>
