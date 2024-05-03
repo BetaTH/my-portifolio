@@ -1,5 +1,7 @@
 'use client'
+import { Button } from '@/components/buttons/button'
 import { HomeButton } from '@/components/buttons/home-button'
+import { LangButton } from '@/components/buttons/lang-button'
 import { MenuButton } from '@/components/buttons/menu-button'
 import { cn } from '@/lib/utils/cn'
 import Link from 'next/link'
@@ -36,7 +38,7 @@ export function Header() {
           </div>
           <div
             className={cn(
-              'transition-all flex duration-300 2sm:h-96 overflow-hidden ',
+              'transition-all flex duration-300 2sm:h-96 2sm:overflow-hidden ',
               {
                 '2sm:h-0': !isActive,
               },
@@ -59,9 +61,10 @@ export function Header() {
                 ))}
               </ul>
               <div className="h-6 border border-gray-600 2sm:h-0 2sm:w-[10rem]" />
-              <button className="px-4 sm:rounded-lg rounded-xl 2sm:text-2xl py-[0.375rem] hover:bg-gray-50 bg-gray-200 text-gray-900 transition-colors text-base font-medium">
-                Download CV
-              </button>
+              <div className="flex gap-6">
+                <LangButton />
+                <Button>Download CV</Button>
+              </div>
             </nav>
           </div>
         </div>

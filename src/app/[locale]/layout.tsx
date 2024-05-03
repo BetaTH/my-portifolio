@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Fira_Code as FiraCode, Fira_Sans as FiraSans } from 'next/font/google'
 import './globals.css'
+import { getCurrentLocale } from '@/lib/locale/server'
 
 const firaCode = FiraCode({ subsets: ['latin'] })
 const firaSans = FiraSans({
@@ -23,8 +24,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const locale = getCurrentLocale()
   return (
-    <html lang="pt-br">
+    <html lang={locale}>
       <body className={`${firaCode.className} ${firaSans.variable} relative`}>
         {children}
       </body>
