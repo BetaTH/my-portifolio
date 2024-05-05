@@ -16,33 +16,30 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        'w-full p-6 rounded-xl flex gap-9 2md:flex-col',
+        'w-full p-6 rounded-xl border flex gap-9 h-[21rem] items-center 2md:h-[40.25rem] sm:h-[43.25rem] 2md:flex-col ',
         className,
         {
-          'border-gray-200 border': variant === 'primary',
-          'bg-gray-700 flex-row-reverse': variant === 'secondary',
+          'border-gray-200 ': variant === 'primary',
+          'bg-gray-700 flex-row-reverse border-transparent':
+            variant === 'secondary',
         },
       )}
     >
-      <div className="flex-shrink-0 w-[22.5rem] 2md:w-full min-h-[15.75rem] h-full rounded-xl bg-white" />
-      <div className="flex flex-col justify-between min-h-[15.75rem] w-full">
-        <div className="flex flex-col gap-4">
+      <div className="flex-shrink-0 h-full w-[22.5rem] 2md:h-[17rem] sm:w-full rounded-xl bg-white" />
+      <div className="flex flex-col justify-between h-full w-full">
+        <div className="flex flex-col gap-4 sm:gap-[0.875rem]">
           <span className="text-primary font-semibold text-lg/5">Backend</span>
-          <h4 className="text-title text-3xl/8">1 - Project 01</h4>
-          <P>
-            {`As a Senior Software Engineer at Google, I played a pivotal role in
-            developing innovative solutions for Google's core search algorithms.
-            Collaborating with a dynamic team of engineers, I contributed to the
-            enhancement of search accuracy and efficiency, optimizing user
-            experiences for millions of users worldwide.`}
+          <h4 className="text-title text-3xl/8 ">1 - Project 01</h4>
+          <P className="sm:tracking-[0em] line-clamp-[8]">
+            {` A React component library for building consistent, high-quality user interfaces. The library provides components based on modern, accessible design patterns, enabling developers to quickly build beautiful, responsive web apps. The components are highly customizable via a system of design tokens and themes. This allows easily adapting the look and feel of components to suit any project's needs. Built with a focus on performance and accessibility, React Design System is a great choice for teams wanting to speed up development with reusable, production-ready components. `}
           </P>
         </div>
-        <div className="flex gap-5 pt-4">
-          <LinkButton href="/" className="2md:text-lg">
+        <div className="flex gap-5 pt-4 2sm:pt-[0.875rem]">
+          <LinkButton href="/" className="2md:text-lg/6 text-title">
             <IconGit className="w-5 h-5" />
             Code
           </LinkButton>
-          <LinkButton href="/" className="2md:text-lg">
+          <LinkButton href="/" className="2md:text-lg/6 text-title">
             <IconDeploy className="w-5 h-5" />
             Deploy
           </LinkButton>

@@ -61,7 +61,7 @@ export default async function Home({
             </div>
           </Section>
           <Section id="projects" title="Projects">
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8 w-full">
               <ProjectCard />
               <ProjectCard variant="secondary" />
               <ProjectCard />
