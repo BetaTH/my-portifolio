@@ -2,7 +2,8 @@ export const colors = {
   body: '#282C33',
   primary: '#C778DD',
   title: '#FFFFFF',
-  'body-text': '#E6E6E6',
+  'body-text': '#D1D5DB',
+  'body-text-02': '#E6E6E6',
   gray: {
     dark: {
       600: '#D1D5DB',

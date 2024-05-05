@@ -1,14 +1,20 @@
+import { Button } from '@/components/buttons/button'
+import { ProjectCard } from '@/components/cards/project-card'
+import { ProjectInDevelopmentCard } from '@/components/cards/project-in-development-card'
 import { SkillCard } from '@/components/cards/skill-card'
 import { SocialCard } from '@/components/cards/social-card'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
-import { Section } from '@/components/section'
+import { P } from '@/components/layout/paragraph'
+import { Section } from '@/components/layout/section'
 import { AboutImage } from '@/components/svg-components/about-image'
 import { HeroImage } from '@/components/svg-components/hero-image'
 import { IconEmail } from '@/components/svg-components/icon-email'
+import { IconGit } from '@/components/svg-components/icon-git'
 import { getScopedI18n } from '@/lib/locale/server'
 import { skills } from '@/lib/utils/skill-data'
 import { setStaticParamsLocale } from 'next-international/server'
+import Link from 'next/link'
 
 export default async function Home({
   params: { locale },
@@ -31,9 +37,7 @@ export default async function Home({
                 <br />
                 <span className="text-primary">{t('hero.title04')}</span>
               </h1>
-              <p className="text-base text-body-text font-sans tracking-[0.015em] 2sm:text-lg">
-                {t('hero.descripiton')}
-              </p>
+              <P>{t('hero.descripiton')}</P>
               <SocialCard />
             </div>
             <HeroImage className="w-[25.625rem] h-[18.625rem] sm:w-full" />
@@ -48,15 +52,36 @@ export default async function Home({
           <Section id="about" title={t('about.name')}>
             <div className="w-full flex gap-[3.75rem] items-center justify-center md:flex-col">
               <AboutImage className="w-[25rem] h-[23.5625rem] sm:w-full" />
-              <div className="flex max-w-full flex-col gap-3 text-base/5 2sm:text-lg tracking-[0.015em] font-sans w-[32.375rem] text-body-text">
-                <p>{t('about.about01')}</p>
-                <p>{t('about.about02')}</p>
-                <p>{t('about.about03')}</p>
-                <p>{t('about.about04')}</p>
+              <div className="flex max-w-full flex-col gap-3 w-[32.375rem]">
+                <P>{t('about.about01')}</P>
+                <P>{t('about.about02')}</P>
+                <P>{t('about.about03')}</P>
+                <P>{t('about.about04')}</P>
               </div>
             </div>
           </Section>
-          {/* <Section id="experience" title="My Experience"></Section> */}
+          <Section id="projects" title="Projects">
+            <div className="flex flex-col gap-8">
+              <ProjectCard />
+              <ProjectCard variant="secondary" />
+              <ProjectCard />
+            </div>
+            <h3 className="text-title text-[1.625rem]/[1.625rem] font-medium">
+              In Development
+            </h3>
+            <div className="grid grid-cols-2 gap-6">
+              <ProjectInDevelopmentCard />
+              <ProjectInDevelopmentCard />
+            </div>
+            <Button className="gap-2" asChild>
+              <Link
+                href={'https://github.com/BetaTH?tab=repositories'}
+                target="_blank"
+              >
+                See all <IconGit />
+              </Link>
+            </Button>
+          </Section>
         </div>
       </div>
       <div className="px-6 bg-gray-800">

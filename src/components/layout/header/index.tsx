@@ -2,15 +2,17 @@
 import { Button } from '@/components/buttons/button'
 import { HomeButton } from '@/components/buttons/home-button'
 import { LangButton } from '@/components/buttons/lang-button'
+import { LinkButton } from '@/components/buttons/link-button'
 import { MenuButton } from '@/components/buttons/menu-button'
 import { useScopedI18n } from '@/lib/locale/client'
 import { cn } from '@/lib/utils/cn'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-const navigation: ['skills', 'about', 'contact'] = [
+const navigation: ['skills', 'about', 'projects', 'contact'] = [
   'skills',
   'about',
+  'projects',
   'contact',
 ]
 
@@ -57,20 +59,18 @@ export function Header() {
               <ul className="flex gap-6 2sm:flex-col items-center justify-center">
                 {navigation.map((item) => (
                   <li key={item}>
-                    <Link
-                      onClick={toggleMenu}
-                      href={`#${item}`}
-                      className="text-gray-dark-600 font-medium text-base 2sm:text-2xl hover:text-primary transition-colors"
-                    >
+                    <LinkButton onClick={toggleMenu} href={`#${item}`}>
                       {t(item)}
-                    </Link>
+                    </LinkButton>
                   </li>
                 ))}
               </ul>
               <div className="h-6 border border-gray-600 2sm:h-0 2sm:w-full" />
               <div className="flex gap-6">
                 <LangButton />
-                <Button>{t('download')}</Button>
+                <Button>
+                  <Link href={'/'}>{t('download')}</Link>
+                </Button>
               </div>
             </nav>
           </div>

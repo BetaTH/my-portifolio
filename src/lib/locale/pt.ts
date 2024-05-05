@@ -36,8 +36,9 @@ export default {
   },
   header: {
     skills: 'Skills',
-    contact: 'Contato',
     about: 'Sobre Mim',
+    projects: 'Projetos',
+    contact: 'Contato',
     download: 'Download CV',
   },
 } as const

@@ -7,9 +7,6 @@ interface LocaleProviderProps extends PropsWithChildren {
   locale: string
 }
 
-export default function LocaleProvider({
-  children,
-  locale,
-}: LocaleProviderProps) {
+export function LocaleProvider({ children, locale }: LocaleProviderProps) {
   return <I18nProviderClient locale={locale}>{children}</I18nProviderClient>
 }

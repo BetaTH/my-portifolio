@@ -6,7 +6,7 @@ import {
   getScopedI18n,
   getStaticParams,
 } from '@/lib/locale/server'
-import LocaleProvider from '@/components/layout/locale-provider'
+import { LocaleProvider } from '@/components/layout/locale-provider'
 
 const firaCode = FiraCode({ subsets: ['latin'] })
 const firaSans = FiraSans({
