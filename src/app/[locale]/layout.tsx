@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getScopedI18n('pages.home.metadata')
 
   const description = t('description')
-  const title = 'Thielson Almendra | Portifolio'
+  const title = 'Thielson Almendra | Portfolio'
 
   return {
     title,

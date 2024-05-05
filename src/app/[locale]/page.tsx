@@ -12,6 +12,7 @@ import { HeroImage } from '@/components/svg-components/hero-image'
 import { IconEmail } from '@/components/svg-components/icon-email'
 import { IconGit } from '@/components/svg-components/icon-git'
 import { getScopedI18n } from '@/lib/locale/server'
+import { GetPortfolioProjectsData } from '@/lib/services/get-portifolio-data'
 import { skills } from '@/lib/utils/skill-data'
 import { setStaticParamsLocale } from 'next-international/server'
 import Link from 'next/link'
@@ -23,6 +24,9 @@ export default async function Home({
 }) {
   setStaticParamsLocale(locale)
   const t = await getScopedI18n('pages.home')
+  const data = await GetPortfolioProjectsData()
+  console.log(data)
+
   return (
     <main id={'home'} className="bg-body pt-[4.75rem]">
       <Header />
