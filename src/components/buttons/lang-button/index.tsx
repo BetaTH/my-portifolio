@@ -1,5 +1,5 @@
 'use client'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '../button'
 import { availableLanguages } from '@/lib/locale'
 import { useChangeLocale, useCurrentLocale } from '@/lib/locale/client'
@@ -10,38 +10,17 @@ export function LangButton() {
   const [isOpen, setIsOpen] = useState(false)
   const currentLanguage = useCurrentLocale()
   const toggleLanguage = useChangeLocale()
-  const languageSelected = useCallback(
-    () =>
-      Object.entries(availableLanguages).reduce(
-        (acc, [key, value]) => {
-          if (value.id === currentLanguage) {
-            acc = {
-              name: key,
-            }
-          }
-          return acc
-        },
-        {} as {
-          name: string
-        },
-      ),
-    [currentLanguage],
-  )
+  const languages = Object.entries(availableLanguages)
 
-  const { name } = languageSelected()
   return (
-    <div className="relative z-50">
-      <Button className="px-2 z-0 sm:px-3">
-        <span>{name}</span>
-        <ChevronDown />
-      </Button>
+    <div className="relative z-50 w-14 2md:w-[4.5rem] sm:w-[5rem] min-h-full">
       <div
         onMouseEnter={() => !isOpen && setIsOpen(true)}
         onMouseLeave={() => isOpen && setIsOpen(false)}
         className={cn(
-          'transition-all duration-300 w-full overflow-hidden absolute top-0 h-full left-0 z-10 bg-gray-200 sm:rounded-lg rounded-xl',
-          { 'h-[200%] visible': isOpen },
+          'transition-all duration-300 w-fit overflow-hidden absolute top-0 left-0 z-10 bg-gray-200 sm:rounded-lg rounded-xl',
         )}
+        style={{ height: `${isOpen ? languages.length * 100 : 100}%` }}
       >
         {Object.entries(availableLanguages)
           .sort(([, { id }]) => (id === currentLanguage ? -1 : 1))

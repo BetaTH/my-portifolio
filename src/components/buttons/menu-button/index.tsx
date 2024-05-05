@@ -11,9 +11,9 @@ interface MenuButtonProps {
 
 export function MenuButton({ isActive, toggleMenu }: MenuButtonProps) {
   return (
-    <div
+    <button
       onClick={toggleMenu}
-      className="relative size-8 justify-center items-center 2sm:flex 2sm:flex-col hidden"
+      className="relative size-8 hidden justify-center items-center 2md:flex 2md:flex-col "
     >
       <MenuIcon
         className={cn(
@@ -27,6 +27,6 @@ export function MenuButton({ isActive, toggleMenu }: MenuButtonProps) {
           { 'opacity-100 rotate-0': isActive },
         )}
       />
-    </div>
+    </button>
   )
 }

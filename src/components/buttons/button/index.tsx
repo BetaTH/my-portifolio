@@ -16,7 +16,7 @@ export function Button({
   return (
     <Component
       className={cn(
-        'px-4 flex items-center justify-center gap-1 sm:rounded-lg rounded-xl 2sm:text-2xl py-[0.375rem] hover:bg-gray-50 bg-gray-200 text-gray-900 transition-colors text-base font-medium',
+        'px-4 flex items-center justify-center gap-1 sm:rounded-lg rounded-xl 2md:text-2xl py-[0.375rem] hover:bg-gray-50 bg-gray-200 text-gray-900 transition-colors text-base font-medium',
         className,
       )}
       {...props}

@@ -11,7 +11,7 @@ export function LinkButton({ children, className, ...props }: LinkButtonProps) {
     <Link
       {...props}
       className={cn(
-        'text-gray-dark-600 flex items-center gap-2 font-medium text-base 2sm:text-2xl hover:text-primary transition-colors',
+        'text-gray-dark-600 flex items-center gap-2 font-medium text-base 2md:text-2xl hover:text-primary transition-colors',
         className,
       )}
     >
