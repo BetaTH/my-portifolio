@@ -43,10 +43,10 @@ export const skills = [
     name: 'Expo',
     icon: '/icons/expo.svg',
   },
-  {
-    name: 'Figma',
-    icon: '/icons/figma.svg',
-  },
+  //   {
+  //     name: 'Figma',
+  //     icon: '/icons/figma.svg',
+  //   },
   {
     name: 'Graphql',
     icon: '/icons/graphql.svg',
