@@ -16,7 +16,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        'w-full p-6 rounded-xl flex gap-9 h-[18.75rem]',
+        'w-full p-6 rounded-xl flex gap-9 2md:flex-col',
         className,
         {
           'border-gray-200 border': variant === 'primary',
@@ -24,8 +24,8 @@ export function ProjectCard({
         },
       )}
     >
-      <div className="min-w-[22.5rem] h-full rounded-xl bg-white" />
-      <div className="flex flex-col justify-between h-full w-full">
+      <div className="flex-shrink-0 w-[22.5rem] 2md:w-full min-h-[15.75rem] h-full rounded-xl bg-white" />
+      <div className="flex flex-col justify-between min-h-[15.75rem] w-full">
         <div className="flex flex-col gap-4">
           <span className="text-primary font-semibold text-lg/5">Backend</span>
           <h4 className="text-title text-3xl/8">1 - Project 01</h4>
@@ -37,12 +37,12 @@ export function ProjectCard({
             experiences for millions of users worldwide.`}
           </P>
         </div>
-        <div className="flex gap-5">
-          <LinkButton href="/">
+        <div className="flex gap-5 pt-4">
+          <LinkButton href="/" className="2md:text-lg">
             <IconGit className="w-5 h-5" />
             Code
           </LinkButton>
-          <LinkButton href="/">
+          <LinkButton href="/" className="2md:text-lg">
             <IconDeploy className="w-5 h-5" />
             Deploy
           </LinkButton>

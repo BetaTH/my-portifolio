@@ -69,7 +69,8 @@ export default async function Home({
             <h3 className="text-title text-[1.625rem]/[1.625rem] font-medium">
               In Development
             </h3>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6 2md:w-full 2md:flex flex-wrap 2md:justify-center">
+              <ProjectInDevelopmentCard />
               <ProjectInDevelopmentCard />
               <ProjectInDevelopmentCard />
             </div>
