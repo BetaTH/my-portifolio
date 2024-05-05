@@ -2,21 +2,27 @@ import { LinkButton } from '@/components/buttons/link-button'
 import { P } from '@/components/layout/paragraph'
 import { IconDeploy } from '@/components/svg-components/icon-deploy'
 import { IconGit } from '@/components/svg-components/icon-git'
+import { getScopedI18n } from '@/lib/locale/server'
+import { Project } from '@/lib/types/project'
 import { cn } from '@/lib/utils/cn'
+import Image from 'next/image'
 
 interface ProjectCardProps {
   className?: string
   variant?: 'primary' | 'secondary'
+  project: Project
 }
 
-export function ProjectCard({
+export async function ProjectCard({
   className,
   variant = 'primary',
+  project,
 }: ProjectCardProps) {
+  const t = await getScopedI18n('pages.home.projects')
   return (
     <div
       className={cn(
-        'w-full p-6 rounded-xl border flex gap-9 h-[21rem] items-center 2md:h-[40.25rem] sm:h-[43.25rem] 2md:flex-col ',
+        'w-full p-6 rounded-xl border flex gap-9 h-[21rem] items-center 2md:h-[40.25rem] 2md:flex-col ',
         className,
         {
           'border-gray-200 ': variant === 'primary',
@@ -25,23 +31,40 @@ export function ProjectCard({
         },
       )}
     >
-      <div className="flex-shrink-0 h-full w-[22.5rem] 2md:h-[17rem] sm:w-full rounded-xl bg-white" />
-      <div className="flex flex-col justify-between h-full w-full">
+      <div className="overflow-hidden flex-shrink-0 relative h-full w-[22.5rem] 2md:w-[25rem] 2md:h-[17rem] sm:!w-full rounded-xl">
+        <Image
+          alt={`${project.title} ${t('project-image-alt')}`}
+          src={project.img}
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="flex flex-col h-full w-full justify-center gap-[1.7rem] sm:gap-[0.875rem]">
         <div className="flex flex-col gap-4 sm:gap-[0.875rem]">
           <span className="text-primary font-semibold text-lg/5">Backend</span>
-          <h4 className="text-title text-3xl/8 ">1 - Project 01</h4>
-          <P className="sm:tracking-[0em] line-clamp-[8]">
-            {` A React component library for building consistent, high-quality user interfaces. The library provides components based on modern, accessible design patterns, enabling developers to quickly build beautiful, responsive web apps. The components are highly customizable via a system of design tokens and themes. This allows easily adapting the look and feel of components to suit any project's needs. Built with a focus on performance and accessibility, React Design System is a great choice for teams wanting to speed up development with reusable, production-ready components. `}
-          </P>
+          <h4 className="text-title text-3xl/8 ">{project.title}</h4>
         </div>
-        <div className="flex gap-5 pt-4 2sm:pt-[0.875rem]">
-          <LinkButton href="/" className="2md:text-lg/6 text-title">
+
+        <P className="sm:tracking-[0em] line-clamp-[7] sm:line-clamp-[8]">
+          {project.description}
+        </P>
+
+        <div className="flex gap-5 sm:mt-auto">
+          <LinkButton
+            href={project.linkCode}
+            target="_blank"
+            className="2md:text-lg/6 text-title"
+          >
             <IconGit className="w-5 h-5" />
-            Code
+            {t('buttons.code')}
           </LinkButton>
-          <LinkButton href="/" className="2md:text-lg/6 text-title">
+          <LinkButton
+            target="_blank"
+            href={project.linkDeploy}
+            className="2md:text-lg/6 text-title"
+          >
             <IconDeploy className="w-5 h-5" />
-            Deploy
+            {t('buttons.deploy')}
           </LinkButton>
         </div>
       </div>

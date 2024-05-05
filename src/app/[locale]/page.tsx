@@ -11,22 +11,17 @@ import { AboutImage } from '@/components/svg-components/about-image'
 import { HeroImage } from '@/components/svg-components/hero-image'
 import { IconEmail } from '@/components/svg-components/icon-email'
 import { IconGit } from '@/components/svg-components/icon-git'
-import { getScopedI18n } from '@/lib/locale/server'
+import { getCurrentLocale, getScopedI18n } from '@/lib/locale/server'
 import { GetPortfolioProjectsData } from '@/lib/services/get-portifolio-data'
 import { skills } from '@/lib/utils/skill-data'
 import { setStaticParamsLocale } from 'next-international/server'
 import Link from 'next/link'
 
-export default async function Home({
-  params: { locale },
-}: {
-  params: { locale: string }
-}) {
-  setStaticParamsLocale(locale)
+export default async function Home({ params }: { params: { locale: string } }) {
+  setStaticParamsLocale(params.locale)
+  const locale = getCurrentLocale()
   const t = await getScopedI18n('pages.home')
-  const data = await GetPortfolioProjectsData()
-  console.log(data)
-
+  const data = await GetPortfolioProjectsData({ locale })
   return (
     <main id={'home'} className="bg-body pt-[4.75rem]">
       <Header />
@@ -64,26 +59,31 @@ export default async function Home({
               </div>
             </div>
           </Section>
-          <Section id="projects" title="Projects">
+          <Section id="projects" title={t('projects.name')}>
             <div className="flex flex-col gap-8 w-full">
-              <ProjectCard />
-              <ProjectCard variant="secondary" />
-              <ProjectCard />
+              {data.projects.map((project) => {
+                return <ProjectCard key={project.title} project={project} />
+              })}
             </div>
             <h3 className="text-title text-[1.625rem]/[1.625rem] font-medium">
-              In Development
+              {t('projects.development')}
             </h3>
-            <div className="grid grid-cols-2 gap-6 2md:w-full 2md:flex flex-wrap 2md:justify-center">
-              <ProjectInDevelopmentCard />
-              <ProjectInDevelopmentCard />
-              <ProjectInDevelopmentCard />
+            <div className="w-[50.375rem] gap-6 2md:w-full flex flex-wrap justify-center">
+              {data.projectsInDevelopment.map((projectInDevelopment) => {
+                return (
+                  <ProjectInDevelopmentCard
+                    key={projectInDevelopment.title}
+                    projectInDevelopment={projectInDevelopment}
+                  />
+                )
+              })}
             </div>
             <Button className="gap-2" asChild>
               <Link
                 href={'https://github.com/BetaTH?tab=repositories'}
                 target="_blank"
               >
-                See all <IconGit />
+                {t('projects.buttons.see-all')} <IconGit />
               </Link>
             </Button>
           </Section>

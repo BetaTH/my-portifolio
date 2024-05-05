@@ -23,6 +23,16 @@ export default {
       about04:
         'Estou sempre aberto a novas oportunidades e desafios emocionantes.',
     },
+    projects: {
+      name: 'Projetos',
+      development: 'Em Desenvolvimento',
+      'project-image-alt': 'imagem de ilustração',
+      buttons: {
+        code: 'Código',
+        deploy: 'Deploy',
+        'see-all': 'Veja todos',
+      },
+    },
     contact: {
       name: 'Contato',
       text01: 'Entre em Contato!',

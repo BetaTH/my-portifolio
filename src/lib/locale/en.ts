@@ -22,6 +22,16 @@ export default {
         'Currently, I work as a web developer and freelance data analyst, constantly seeking to improve my skills and expand my knowledge. Outside of the professional world, I dedicate my time to reading, practicing physical activities, and simply enjoying moments of tranquility.',
       about04: "I'm always open to new opportunities and exciting challenges.",
     },
+    projects: {
+      name: 'Projects',
+      development: 'In Development',
+      'project-image-alt': 'illustration image',
+      buttons: {
+        code: 'Code',
+        deploy: 'Deploy',
+        'see-all': 'See all',
+      },
+    },
     contact: {
       name: 'Contact',
       text01: 'Get in Touch!',

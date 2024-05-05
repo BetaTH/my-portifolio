@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils/cn'
 import Link from 'next/link'
-import { HTMLAttributes } from 'react'
+import { AnchorHTMLAttributes } from 'react'
 
-interface LinkButtonProps extends HTMLAttributes<HTMLAnchorElement> {
+interface LinkButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string
 }
 
