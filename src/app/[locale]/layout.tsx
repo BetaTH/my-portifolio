@@ -1,3 +1,4 @@
+import image from '../../../public/open-graph-my-portfolio.png'
 import type { Metadata } from 'next'
 import { Fira_Code as FiraCode, Fira_Sans as FiraSans } from 'next/font/google'
 import '../globals.css'
@@ -31,14 +32,16 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       images: {
-        url: '/open-graph-my-portfolio.png',
+        url: image.src,
       },
     },
     openGraph: {
-      url: '/',
+      url: image.src,
       title,
       description,
-      images: ['/open-graph-my-portfolio.png'],
+      images: {
+        url: image.src,
+      },
     },
     icons: {
       icon: '/favicon.png',
