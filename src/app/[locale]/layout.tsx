@@ -31,14 +31,14 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       images: {
-        url: 'http://drive.google.com/uc?export=view&id=1O36EZcoPXqEIMiPc5ebxCiX9WSBRj_j9',
+        url: 'http://drive.google.com/uc?export=view&id=1WeuosMCQQHRx1JibLEZSlfmyJ-5JBe7m',
       },
     },
     openGraph: {
       title,
       description,
       images: {
-        url: 'http://drive.google.com/uc?export=view&id=1O36EZcoPXqEIMiPc5ebxCiX9WSBRj_j9',
+        url: 'http://drive.google.com/uc?export=view&id=1WeuosMCQQHRx1JibLEZSlfmyJ-5JBe7m',
       },
     },
     icons: {
