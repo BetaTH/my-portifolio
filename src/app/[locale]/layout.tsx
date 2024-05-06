@@ -31,14 +31,14 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       images: {
-        url: '/open-graph-my-protifolio.png',
+        url: '/open-graph-my-portfolio.png',
       },
     },
     openGraph: {
-      url: 'https://th-dev.vercel.app/',
+      url: '/',
       title,
       description,
-      images: ['/open-graph-my-protifolio.png'],
+      images: ['/open-graph-my-portfolio.png'],
     },
     icons: {
       icon: '/favicon.png',
