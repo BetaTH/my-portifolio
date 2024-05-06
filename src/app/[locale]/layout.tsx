@@ -35,12 +35,10 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      url: '/open-graph-my-protifolio.png',
+      url: 'https://th-dev.vercel.app/',
       title,
       description,
-      images: {
-        url: '/open-graph-my-protifolio.png',
-      },
+      images: ['/open-graph-my-protifolio.png'],
     },
     icons: {
       icon: '/favicon.png',
