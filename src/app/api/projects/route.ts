@@ -1,4 +1,3 @@
-import { revalidateTag } from 'next/cache'
 import { PutPortfolioProjectsData } from '@/lib/services/put-portfolio-projects-data'
 import { env } from '@/lib/utils/env'
 import { NextResponse, NextRequest } from 'next/server'
@@ -26,18 +25,19 @@ const projectSchema = z.object({
 })
 
 const revalidateProjectsSchema = z.object({
-  revalidateKey: z.string(),
-  data: z
-    .object({
-      en: projectSchema,
-      pt: projectSchema,
-    })
-    .optional(),
+  en: projectSchema,
+  pt: projectSchema,
 })
 
 export async function PUT(request: NextRequest) {
   const data = await request.json()
+  const secret = request.nextUrl.searchParams.get('secret')
+  if (secret !== env.REVALIDATE_KEY) {
+    return NextResponse.json({ message: 'unauthorized' }, { status: 401 })
+  }
+
   let dataParsed: z.infer<typeof revalidateProjectsSchema>
+
   try {
     dataParsed = revalidateProjectsSchema.parse(data)
   } catch (error) {
@@ -48,18 +48,13 @@ export async function PUT(request: NextRequest) {
       )
     }
     return NextResponse.json(
-      { message: 'Some error on revalidating' },
+      { message: 'Some error on validation' },
       { status: 500 },
     )
   }
-  if (dataParsed.revalidateKey !== env.REVALIDATE_KEY) {
-    return NextResponse.json({ message: 'unauthorized' }, { status: 401 })
-  }
 
   try {
-    if (dataParsed.data) {
-      await PutPortfolioProjectsData({ data: dataParsed.data })
-    }
+    await PutPortfolioProjectsData({ data: dataParsed })
   } catch (e) {
     return NextResponse.json(
       { message: 'Some error on revalidating' },
@@ -67,6 +62,8 @@ export async function PUT(request: NextRequest) {
     )
   }
 
-  revalidateTag('projects')
-  return NextResponse.json({ message: 'Revalidate success' }, { status: 200 })
+  return NextResponse.json(
+    { revalidated: true, now: new Date() },
+    { status: 200 },
+  )
 }
