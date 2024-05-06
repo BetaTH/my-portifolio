@@ -1,4 +1,3 @@
-import image from '../../../public/open-graph-my-portfolio.png'
 import type { Metadata } from 'next'
 import { Fira_Code as FiraCode, Fira_Sans as FiraSans } from 'next/font/google'
 import '../globals.css'
@@ -31,25 +30,16 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       title,
       description,
-      images: [
-        {
-          url: image.src,
-          width: image.width,
-          height: image.height,
-        },
-      ],
+      images: {
+        url: 'http://drive.google.com/uc?export=view&id=1xi2MAgVJgv1F7g5WRZshCN113dmvMLgt',
+      },
     },
     openGraph: {
-      url: image.src,
       title,
       description,
-      images: [
-        {
-          url: image.src,
-          width: image.width,
-          height: image.height,
-        },
-      ],
+      images: {
+        url: 'http://drive.google.com/uc?export=view&id=1xi2MAgVJgv1F7g5WRZshCN113dmvMLgt',
+      },
     },
     icons: {
       icon: '/favicon.png',
