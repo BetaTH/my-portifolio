@@ -30,12 +30,12 @@ const revalidateProjectsSchema = z.object({
 })
 
 export async function PUT(request: NextRequest) {
-  const data = await request.json()
   const secret = request.nextUrl.searchParams.get('secret')
   if (secret !== env.REVALIDATE_KEY) {
     return NextResponse.json({ message: 'unauthorized' }, { status: 401 })
   }
 
+  const data = await request.json()
   let dataParsed: z.infer<typeof revalidateProjectsSchema>
 
   try {
