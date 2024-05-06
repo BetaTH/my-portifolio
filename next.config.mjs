@@ -8,6 +8,11 @@ const nextConfig = {
         port: '',
         pathname: '/drive-viewer/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'drive.google.com',
+        port: '',
+      },
     ],
   },
 }

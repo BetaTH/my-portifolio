@@ -24,17 +24,24 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const description = t('description')
   const title = 'Thielson Almendra | Portfolio'
-
+  //   https://lh3.googleusercontent.com/drive-viewer/AKGpihY36ZadHaiWLvedXM46GHpapSJL-TbzV-jAfE8HkkyVWOTEIMa99EogMS7Gs3OaW-MMfVSsQm38rcJkrc3EkZEyqpg5CB8hOBk=s2560
   return {
     title,
     description,
     twitter: {
       title,
       description,
+      images: {
+        url: 'http://drive.google.com/uc?export=view&id=1xi2MAgVJgv1F7g5WRZshCN113dmvMLgt',
+      },
     },
     openGraph: {
+      url: 'http://drive.google.com/uc?export=view&id=1xi2MAgVJgv1F7g5WRZshCN113dmvMLgt',
       title,
       description,
+      images: {
+        url: 'http://drive.google.com/uc?export=view&id=1xi2MAgVJgv1F7g5WRZshCN113dmvMLgt',
+      },
     },
     icons: {
       icon: '/favicon.png',
