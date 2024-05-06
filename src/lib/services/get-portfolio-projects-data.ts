@@ -30,7 +30,7 @@ export async function GetPortfolioProjectsData({
     next: { tags: ['projects'] },
   })
   // const res = await dataCached('portfolio-data/portfolio-data.json')
-  const data = await res.json()
+  const data: PortfolioData = await res.json()
 
   return data[locale]
 }
