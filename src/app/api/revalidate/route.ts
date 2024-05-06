@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: 'unauthorized' }, { status: 401 })
   }
 
-  revalidatePath('/')
+  revalidatePath('/', 'page')
   return NextResponse.json(
     { revalidated: true, now: new Date() },
     { status: 200 },
