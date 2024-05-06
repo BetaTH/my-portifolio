@@ -27,10 +27,12 @@ const projectSchema = z.object({
 
 const revalidateProjectsSchema = z.object({
   revalidateKey: z.string(),
-  data: z.object({
-    en: projectSchema,
-    pt: projectSchema,
-  }),
+  data: z
+    .object({
+      en: projectSchema,
+      pt: projectSchema,
+    })
+    .optional(),
 })
 
 export async function PUT(request: NextRequest) {
@@ -55,7 +57,9 @@ export async function PUT(request: NextRequest) {
   }
 
   try {
-    await PutPortfolioProjectsData({ data: dataParsed.data })
+    if (dataParsed.data) {
+      await PutPortfolioProjectsData({ data: dataParsed.data })
+    }
   } catch (e) {
     return NextResponse.json(
       { message: 'Some error on revalidating' },

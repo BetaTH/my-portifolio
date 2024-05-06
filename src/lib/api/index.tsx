@@ -7,8 +7,6 @@ export async function api(endpoint: string, init: RequestInit) {
     secretAccessKey: env.SECRET_ACCESS_KEY,
   })
 
-  console.log(`env.API_BASE_URL${endpoint}`)
-
   return await client.fetch(`${env.API_BASE_URL}${endpoint}`, {
     method: 'GET',
     headers: {
