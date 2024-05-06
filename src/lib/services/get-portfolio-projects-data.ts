@@ -2,10 +2,6 @@ import { api } from '../api'
 import { Project } from '../types/project'
 import { ProjectInDevelopment } from '../types/project-in-development'
 
-interface GetPortfolioProjectsDataProps {
-  locale?: 'en' | 'pt'
-}
-
 interface PortfolioLocaleData {
   projects: Project[]
   projectsInDevelopment: ProjectInDevelopment[]
@@ -16,11 +12,7 @@ export interface PortfolioData {
   pt: PortfolioLocaleData
 }
 
-export async function GetPortfolioProjectsData({
-  locale = 'en',
-}: GetPortfolioProjectsDataProps) {
+export async function GetPortfolioProjectsData() {
   const res = await api('portfolio-data/portfolio-data.json', {})
-  const data: PortfolioData = await res.json()
-
-  return data[locale]
+  return res
 }
