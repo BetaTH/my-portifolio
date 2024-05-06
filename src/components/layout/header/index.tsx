@@ -4,6 +4,7 @@ import { HomeButton } from '@/components/buttons/home-button'
 import { LangButton } from '@/components/buttons/lang-button'
 import { LinkButton } from '@/components/buttons/link-button'
 import { MenuButton } from '@/components/buttons/menu-button'
+import { IconDownload } from '@/components/svg-components/icon-download'
 import { useScopedI18n } from '@/lib/locale/client'
 import { cn } from '@/lib/utils/cn'
 import Link from 'next/link'
@@ -68,8 +69,11 @@ export function Header() {
               <div className="h-6 border border-gray-600 2md:h-0 2md:w-full" />
               <div className="flex gap-6">
                 <LangButton />
-                <Button>
-                  <Link href={'/'}>{t('download')}</Link>
+                <Button asChild>
+                  <Link href={t('resumeLink')} target="_blanck">
+                    {t('resume')}
+                    <IconDownload className="size-4 2md:size-5" />
+                  </Link>
                 </Button>
               </div>
             </nav>

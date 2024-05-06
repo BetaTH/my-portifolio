@@ -41,7 +41,9 @@ export async function ProjectCard({
       </div>
       <div className="flex flex-col h-full w-full justify-center gap-[1.7rem] sm:gap-[0.875rem]">
         <div className="flex flex-col gap-4 sm:gap-[0.875rem]">
-          <span className="text-primary font-semibold text-lg/5">Backend</span>
+          <span className="text-primary font-semibold text-lg/5">
+            {project.stack}
+          </span>
           <h4 className="text-title text-3xl/8 ">{project.title}</h4>
         </div>
 

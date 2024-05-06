@@ -35,10 +35,13 @@ export function LangButton() {
             >
               <span>{key}</span>
               <ChevronDown
-                className={cn('transition-transform duration-300', {
-                  '[transform:rotateX(3.142rad)]': isOpen,
-                  hidden: id !== currentLanguage,
-                })}
+                className={cn(
+                  'transition-transform duration-300 size-4 2md:size-5',
+                  {
+                    '[transform:rotateX(3.142rad)]': isOpen,
+                    hidden: id !== currentLanguage,
+                  },
+                )}
               />
             </Button>
           ))}

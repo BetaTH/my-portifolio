@@ -47,6 +47,7 @@ export default {
     about: 'About Me',
     projects: 'Projects',
     contact: 'Contact',
-    download: 'Download CV',
+    resume: 'Resume',
+    resumeLink: 'https://betath.github.io/resume/cv.pdf',
   },
 } as const
