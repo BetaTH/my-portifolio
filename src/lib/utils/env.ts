@@ -7,6 +7,7 @@ const envSchema = z.object({
   API_BASE_URL: z.string().url(),
   ACCESS_KEY_ID: z.string(),
   SECRET_ACCESS_KEY: z.string(),
+  REVALIDATE_KEY: z.string(),
 })
 
 export let env: z.infer<typeof envSchema>

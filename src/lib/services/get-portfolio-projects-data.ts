@@ -11,7 +11,7 @@ interface PortfolioLocaleData {
   projectsInDevelopment: ProjectInDevelopment[]
 }
 
-interface PortfolioData {
+export interface PortfolioData {
   en: PortfolioLocaleData
   pt: PortfolioLocaleData
 }
@@ -19,9 +19,8 @@ interface PortfolioData {
 export async function GetPortfolioProjectsData({
   locale = 'en',
 }: GetPortfolioProjectsDataProps) {
-  const data: PortfolioData = await api(
-    'portfolio-data/portfolio-data.json',
-    {},
-  ).then((res) => res.json())
+  const data: PortfolioData = await api('portfolio-data/portfolio-data.json', {
+    next: { tags: ['projects'] },
+  }).then((res) => res.json())
   return data[locale]
 }
