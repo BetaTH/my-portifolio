@@ -31,17 +31,25 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       title,
       description,
-      images: {
-        url: image.src,
-      },
+      images: [
+        {
+          url: image.src,
+          width: image.width,
+          height: image.height,
+        },
+      ],
     },
     openGraph: {
       url: image.src,
       title,
       description,
-      images: {
-        url: image.src,
-      },
+      images: [
+        {
+          url: image.src,
+          width: image.width,
+          height: image.height,
+        },
+      ],
     },
     icons: {
       icon: '/favicon.png',
