@@ -1,6 +1,5 @@
-// import { revalidatePath } from 'next/cache'
+import { revalidatePath } from 'next/cache'
 import { env } from '@/lib/utils/env'
-import { revalidateTag } from 'next/cache'
 import { NextResponse, NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest) {
@@ -10,8 +9,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: 'unauthorized' }, { status: 401 })
   }
 
-  //   revalidatePath('/', 'layout')
-  revalidateTag('projects')
+  revalidatePath('/', 'layout')
   return NextResponse.json(
     { revalidated: true, now: new Date() },
     { status: 200 },
