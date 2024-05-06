@@ -24,7 +24,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const description = t('description')
   const title = 'Thielson Almendra | Portfolio'
-  //   https://lh3.googleusercontent.com/drive-viewer/AKGpihY36ZadHaiWLvedXM46GHpapSJL-TbzV-jAfE8HkkyVWOTEIMa99EogMS7Gs3OaW-MMfVSsQm38rcJkrc3EkZEyqpg5CB8hOBk=s2560
   return {
     title,
     description,
@@ -32,15 +31,15 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       images: {
-        url: 'http://drive.google.com/uc?export=view&id=1xi2MAgVJgv1F7g5WRZshCN113dmvMLgt',
+        url: '/open-graph-my-protifolio.png',
       },
     },
     openGraph: {
-      url: 'http://drive.google.com/uc?export=view&id=1xi2MAgVJgv1F7g5WRZshCN113dmvMLgt',
+      url: '/open-graph-my-protifolio.png',
       title,
       description,
       images: {
-        url: 'http://drive.google.com/uc?export=view&id=1xi2MAgVJgv1F7g5WRZshCN113dmvMLgt',
+        url: '/open-graph-my-protifolio.png',
       },
     },
     icons: {
