@@ -39,6 +39,7 @@ export default {
       text02:
         'Sinta-se à vontade para me mandar uma mensagem caso tenha gostado do que viu!!',
       text03: 'Também posso ser encontrado nessas plataformas:',
+      message: 'Vamos entrar em cotato?&body=Olá',
     },
   },
   footer: {

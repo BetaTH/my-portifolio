@@ -100,12 +100,15 @@ export default async function Home({ params }: { params: { locale: string } }) {
           <p className="text-xl/6 text-title max-w-[30.375rem] mt-2 font-sans">
             {t('contact.text02')}
           </p>
-          <div className="flex items-center mt-8 gap-5 font-sans">
+          <Link
+            href={`mailto:thielson12@gmail.com?subject=${t('contact.message')}`}
+            className="flex items-center mt-8 gap-5 font-sans transition-colors hover:bg-gray-200/10 rounded-xl p-2"
+          >
             <IconEmail className="size-9" />
             <span className="text-title text-4xl sm:text-2xl tracking-tight">
               thielson12@gmail.com
             </span>
-          </div>
+          </Link>
           <p className="text-base text-body-text mt-8 mb-3 font-sans">
             {t('contact.text03')}
           </p>

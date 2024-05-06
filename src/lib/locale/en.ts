@@ -37,6 +37,7 @@ export default {
       text01: 'Get in Touch!',
       text02: 'Feel free to send me a message if you liked what you saw!!',
       text03: 'I can also be found on these platforms:',
+      message: "Let's get in touch?&body=Hello",
     },
   },
   footer: {
