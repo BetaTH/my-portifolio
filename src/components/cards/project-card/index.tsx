@@ -60,14 +60,16 @@ export async function ProjectCard({
             <IconGit className="w-5 h-5" />
             {t('buttons.code')}
           </LinkButton>
-          <LinkButton
-            target="_blank"
-            href={project.linkDeploy}
-            className="2md:text-lg/6 text-title"
-          >
-            <IconDeploy className="w-5 h-5" />
-            {t('buttons.deploy')}
-          </LinkButton>
+          {project.linkDeploy && (
+            <LinkButton
+              target="_blank"
+              href={project.linkDeploy}
+              className="2md:text-lg/6 text-title"
+            >
+              <IconDeploy className="w-5 h-5" />
+              {t('buttons.deploy')}
+            </LinkButton>
+          )}
         </div>
       </div>
     </div>

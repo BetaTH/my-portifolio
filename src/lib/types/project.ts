@@ -3,6 +3,6 @@ export interface Project {
   stack: string
   description: string
   linkCode: string
-  linkDeploy: string
+  linkDeploy?: string
   img: string
 }
