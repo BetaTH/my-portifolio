@@ -24,8 +24,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
   const t = await getScopedI18n('pages.home')
   const res = await GetPortfolioProjectsData()
 
-  const allData: PortfolioData = await res.json()
-  const data = allData[locale]
+  const data: PortfolioData = await res.json()
   return (
     <main id={'home'} className="bg-body pt-[4.75rem]">
       <Header />
@@ -71,6 +70,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
                     variant={idx % 2 === 0 ? 'primary' : 'secondary'}
                     key={project.title}
                     project={project}
+                    locale={locale}
                   />
                 )
               })}
@@ -84,6 +84,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
                   <ProjectInDevelopmentCard
                     key={projectInDevelopment.title}
                     projectInDevelopment={projectInDevelopment}
+                    locale={locale}
                   />
                 )
               })}

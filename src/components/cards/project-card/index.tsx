@@ -2,7 +2,7 @@ import { LinkButton } from '@/components/buttons/link-button'
 import { P } from '@/components/layout/paragraph'
 import { IconDeploy } from '@/components/svg-components/icon-deploy'
 import { IconGit } from '@/components/svg-components/icon-git'
-import { getScopedI18n } from '@/lib/locale/server'
+import { Locale, getScopedI18n } from '@/lib/locale/server'
 import { Project } from '@/lib/types/project'
 import { cn } from '@/lib/utils/cn'
 import Image from 'next/image'
@@ -11,12 +11,14 @@ interface ProjectCardProps {
   className?: string
   variant?: 'primary' | 'secondary'
   project: Project
+  locale: Locale
 }
 
 export async function ProjectCard({
   className,
   variant = 'primary',
   project,
+  locale,
 }: ProjectCardProps) {
   const t = await getScopedI18n('pages.home.projects')
   return (
@@ -48,7 +50,7 @@ export async function ProjectCard({
         </div>
 
         <P className="sm:tracking-[0em] line-clamp-[7] sm:line-clamp-[8]">
-          {project.description}
+          {project.description[locale]}
         </P>
 
         <div className="flex gap-5 sm:mt-auto">

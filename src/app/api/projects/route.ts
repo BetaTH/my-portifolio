@@ -9,7 +9,10 @@ const projectSchema = z.object({
     z.object({
       title: z.string(),
       stack: z.string(),
-      description: z.string(),
+      description: z.object({
+        en: z.string(),
+        pt: z.string(),
+      }),
       linkCode: z.string(),
       linkDeploy: z.string().optional(),
       img: z.string(),
@@ -19,15 +22,13 @@ const projectSchema = z.object({
     z.object({
       title: z.string(),
       stack: z.string(),
-      description: z.string(),
+      description: z.object({
+        en: z.string(),
+        pt: z.string(),
+      }),
       linkCode: z.string(),
     }),
   ),
-})
-
-const revalidateProjectsSchema = z.object({
-  en: projectSchema,
-  pt: projectSchema,
 })
 
 export async function PUT(request: NextRequest) {
@@ -37,10 +38,10 @@ export async function PUT(request: NextRequest) {
   }
 
   const data = await request.json()
-  let dataParsed: z.infer<typeof revalidateProjectsSchema>
+  let dataParsed: z.infer<typeof projectSchema>
 
   try {
-    dataParsed = revalidateProjectsSchema.parse(data)
+    dataParsed = projectSchema.parse(data)
   } catch (error) {
     if (error instanceof ZodError) {
       return NextResponse.json(

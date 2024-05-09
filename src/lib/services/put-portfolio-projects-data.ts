@@ -1,16 +1,5 @@
 import { api } from '../api'
-import { Project } from '../types/project'
-import { ProjectInDevelopment } from '../types/project-in-development'
-
-interface PortfolioLocaleData {
-  projects: Project[]
-  projectsInDevelopment: ProjectInDevelopment[]
-}
-
-interface PortfolioData {
-  en: PortfolioLocaleData
-  pt: PortfolioLocaleData
-}
+import { PortfolioData } from '../types/portfolio-data'
 
 interface GetPortfolioProjectsDataProps {
   data: PortfolioData

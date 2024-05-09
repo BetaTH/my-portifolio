@@ -1,6 +1,7 @@
-import { PortfolioLocaleData } from './portfolio-locale-data'
+import { Project } from './project'
+import { ProjectInDevelopment } from './project-in-development'
 
 export interface PortfolioData {
-  en: PortfolioLocaleData
-  pt: PortfolioLocaleData
+  projects: Project[]
+  projectsInDevelopment: ProjectInDevelopment[]
 }
