@@ -47,14 +47,14 @@ export const skills = [
   //     name: 'Figma',
   //     icon: '/icons/figma.svg',
   //   },
-  {
-    name: 'Graphql',
-    icon: '/icons/graphql.svg',
-  },
-  {
-    name: 'Docker',
-    icon: '/icons/docker.svg',
-  },
+  // {
+  //   name: 'Graphql',
+  //   icon: '/icons/graphql.svg',
+  // },
+  // {
+  //   name: 'Docker',
+  //   icon: '/icons/docker.svg',
+  // },
   {
     name: 'Git',
     icon: '/icons/git.svg',
