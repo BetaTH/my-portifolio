@@ -68,7 +68,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
               {data.projects.map((project, idx) => {
                 return (
                   <ProjectCard
-                    variant={idx % 2 === 0 ? 'secondary' : 'primary'}
+                    variant={idx % 2 === 0 ? 'primary' : 'secondary'}
                     key={project.title}
                     project={project}
                   />
