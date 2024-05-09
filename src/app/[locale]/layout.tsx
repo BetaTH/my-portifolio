@@ -7,7 +7,6 @@ import {
   getStaticParams,
 } from '@/lib/locale/server'
 import { LocaleProvider } from '@/components/layout/locale-provider'
-
 const firaCode = FiraCode({ subsets: ['latin'] })
 const firaSans = FiraSans({
   weight: ['400', '500', '600', '700'],

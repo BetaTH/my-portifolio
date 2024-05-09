@@ -1,5 +1,4 @@
 import { Button } from '@/components/buttons/button'
-import { ProjectCard } from '@/components/cards/project-card'
 import { ProjectInDevelopmentCard } from '@/components/cards/project-in-development-card'
 import { SkillCard } from '@/components/cards/skill-card'
 import { SocialCard } from '@/components/cards/social-card'
@@ -17,6 +16,9 @@ import { PortfolioData } from '@/lib/types/portfolio-data'
 import { skills } from '@/lib/utils/skill-data'
 import { setStaticParamsLocale } from 'next-international/server'
 import Link from 'next/link'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { ProjectsCarousel } from '@/components/carousel/projects-carousel'
 
 export default async function Home({ params }: { params: { locale: string } }) {
   setStaticParamsLocale(params.locale)
@@ -63,22 +65,11 @@ export default async function Home({ params }: { params: { locale: string } }) {
             </div>
           </Section>
           <Section id="projects" title={t('projects.name')}>
-            <div className="flex flex-col gap-8 w-full">
-              {data.projects.map((project, idx) => {
-                return (
-                  <ProjectCard
-                    variant={idx % 2 === 0 ? 'primary' : 'secondary'}
-                    key={project.title}
-                    project={project}
-                    locale={locale}
-                  />
-                )
-              })}
-            </div>
+            <ProjectsCarousel data={data} locale={locale} />
             <h3 className="text-title text-[1.625rem]/[1.625rem] font-medium">
               {t('projects.development')}
             </h3>
-            <div className="w-[50.375rem] gap-6 2md:w-full flex flex-wrap justify-center">
+            <div className="w-[50.375rem] gap-5 2md:w-full flex flex-wrap justify-center">
               {data.projectsInDevelopment.map((projectInDevelopment) => {
                 return (
                   <ProjectInDevelopmentCard

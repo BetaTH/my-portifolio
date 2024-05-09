@@ -10,3 +10,4 @@ export const {
   en: () => import('./en'),
   pt: () => import('./pt'),
 })
+export type Locale = ReturnType<typeof useCurrentLocale>
