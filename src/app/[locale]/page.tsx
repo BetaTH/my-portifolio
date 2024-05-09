@@ -65,8 +65,14 @@ export default async function Home({ params }: { params: { locale: string } }) {
           </Section>
           <Section id="projects" title={t('projects.name')}>
             <div className="flex flex-col gap-8 w-full">
-              {data.projects.map((project) => {
-                return <ProjectCard key={project.title} project={project} />
+              {data.projects.map((project, idx) => {
+                return (
+                  <ProjectCard
+                    variant={idx % 2 === 0 ? 'secondary' : 'primary'}
+                    key={project.title}
+                    project={project}
+                  />
+                )
               })}
             </div>
             <h3 className="text-title text-[1.625rem]/[1.625rem] font-medium">
