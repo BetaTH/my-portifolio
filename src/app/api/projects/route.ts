@@ -1,5 +1,6 @@
 import { PutPortfolioProjectsData } from '@/lib/services/put-portfolio-projects-data'
 import { env } from '@/lib/utils/env'
+import { revalidatePath } from 'next/cache'
 import { NextResponse, NextRequest } from 'next/server'
 import { ZodError, z } from 'zod'
 
@@ -10,7 +11,7 @@ const projectSchema = z.object({
       stack: z.string(),
       description: z.string(),
       linkCode: z.string(),
-      linkDeploy: z.string(),
+      linkDeploy: z.string().optional(),
       img: z.string(),
     }),
   ),
@@ -62,6 +63,7 @@ export async function PUT(request: NextRequest) {
     )
   }
 
+  revalidatePath('/', 'layout')
   return NextResponse.json(
     { revalidated: true, now: new Date() },
     { status: 200 },
