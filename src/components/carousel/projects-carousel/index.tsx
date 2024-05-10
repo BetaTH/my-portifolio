@@ -67,7 +67,7 @@ export function ProjectsCarousel({
         })}
       </Slider>
       <Button
-        className="absolute sm:bottom-0 left-0 sm:left-2 rounded-full p-2 sm:rounded-full"
+        className="absolute sm:hidden left-0 rounded-full p-2"
         onClick={() => carouselRef.current?.slickPrev()}
       >
         <ChevronLeft className="size-5 sm:size-7" />
@@ -88,7 +88,7 @@ export function ProjectsCarousel({
       </div>
 
       <Button
-        className="absolute right-0 sm:right-2 sm:bottom-0 rounded-full sm:rounded-full p-2"
+        className="absolute right-0 sm:hidden rounded-full p-2"
         onClick={() => carouselRef.current?.slickNext()}
       >
         <ChevronRight className="size-5 sm:size-7" />
