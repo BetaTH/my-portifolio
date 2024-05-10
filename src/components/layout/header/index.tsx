@@ -17,7 +17,7 @@ const navigation: ['skills', 'about', 'projects', 'contact'] = [
   'contact',
 ]
 
-export function Header() {
+export function Header({ isAdmin = false }: { isAdmin?: boolean }) {
   const t = useScopedI18n('header')
   const [isActive, setIsActive] = useState(false)
   const toggleMenu = () => {
@@ -40,7 +40,7 @@ export function Header() {
         )}
         onClick={toggleMenu}
       />
-      <header className="px-6 z-[1000] fixed top-0 left-0 w-full bg-body border-b border-zinc-50/20">
+      <header className="h-[4.75rem] items-center flex px-6 z-[1000] fixed top-0 left-0 w-full bg-body border-b border-zinc-50/20">
         <div className="mx-auto w-[65rem] py-3 max-w-full flex justify-between items-center gap-6 2md:gap-0 2md:flex-col">
           <div className="flex w-fit 2md:w-full justify-between items-center">
             <HomeButton onClick={() => isActive && setIsActive(false)} />
@@ -60,22 +60,26 @@ export function Header() {
               <ul className="flex gap-6 2md:flex-col items-center justify-center">
                 {navigation.map((item) => (
                   <li key={item}>
-                    <LinkButton onClick={toggleMenu} href={`#${item}`}>
+                    <LinkButton onClick={toggleMenu} href={`/#${item}`}>
                       {t(item)}
                     </LinkButton>
                   </li>
                 ))}
               </ul>
-              <div className="h-6 border border-gray-600 2md:h-0 2md:w-full" />
-              <div className="flex gap-6">
-                <LangButton />
-                <Button asChild>
-                  <Link href={t('resumeLink')} target="_blanck">
-                    {t('resume')}
-                    <IconDownload className="size-4 2md:size-5" />
-                  </Link>
-                </Button>
-              </div>
+              {!isAdmin && (
+                <>
+                  <div className="h-6 border border-gray-600 2md:h-0 2md:w-full" />
+                  <div className="flex gap-6">
+                    <LangButton />
+                    <Button asChild>
+                      <Link href={t('resumeLink')} target="_blanck">
+                        {t('resume')}
+                        <IconDownload className="size-4 2md:size-5" />
+                      </Link>
+                    </Button>
+                  </div>
+                </>
+              )}
             </nav>
           </div>
         </div>

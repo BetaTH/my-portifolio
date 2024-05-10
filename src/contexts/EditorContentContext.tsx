@@ -1,11 +1,14 @@
 'use client'
 
-import { createContext, ReactNode, useCallback, useState } from 'react'
-
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import { EditorProps, OnMount } from '@monaco-editor/react'
-
 import { editor } from 'monaco-editor'
-
 import monacoDacrulaTheme from '@/assets/monaco-theme/dracula.json'
 
 interface EditorContextProviderProps {
@@ -24,19 +27,17 @@ export const EditorContentContext = createContext(
 export function EditorContentContextProvider({
   children,
 }: EditorContextProviderProps) {
-  // const monacoRef = useRef<Monaco>()
-  // const editorRef = useRef<editor.IStandaloneCodeEditor>()
   const [isEditorReady, setIsEditorReady] = useState(false)
 
-  const handleEditorDidMount = useCallback<OnMount>((editor, monaco) => {
-    // editorRef.current = editor
-    // monacoRef.current = monaco
+  useEffect(() => {
+    console.log(isEditorReady)
+  }, [isEditorReady])
 
+  const handleEditorDidMount = useCallback<OnMount>((editor, monaco) => {
     monaco.editor.defineTheme(
       'custom-theme',
       monacoDacrulaTheme as editor.IStandaloneThemeData,
     )
-
     monaco.editor.setTheme('custom-theme')
     setIsEditorReady(true)
   }, [])
