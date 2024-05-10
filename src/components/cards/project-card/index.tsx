@@ -7,8 +7,9 @@ import { Locale, useScopedI18n } from '@/lib/locale/client'
 import { Project } from '@/lib/types/project'
 import { cn } from '@/lib/utils/cn'
 import Image from 'next/image'
+import { HTMLAttributes } from 'react'
 
-interface ProjectCardProps {
+interface ProjectCardProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
   variant?: 'primary' | 'secondary'
   project: Project
@@ -17,38 +18,33 @@ interface ProjectCardProps {
 
 export function ProjectCard({
   className,
-  variant = 'primary',
   project,
   locale,
+  ...props
 }: ProjectCardProps) {
   const t = useScopedI18n('pages.home.projects')
   return (
     <div
       className={cn(
-        'group p-3 mx-2 relative rounded-xl border flex gap-4 items-center h-[31.75rem] flex-col ',
+        'p-3 relative bg-gray-800/30 border-gray-200/50 transition-all duration-300 rounded-xl border flex gap-4 items-center h-[29.75rem] flex-col hover:border-primary',
         className,
-        {
-          'border-gray-200 ': variant === 'primary',
-          'group bg-gray-700 border-transparent': variant === 'secondary',
-        },
       )}
+      {...props}
     >
-      <div className="overflow-hidden flex-shrink-0 relative h-[12rem] w-full rounded-xl">
+      <span className="text-primary absolute border border-gray-200/50 px-3 py-2 bg-body rounded-full top-4 left-4 z-10 font-semibold text-sm/3">
+        {project.stack}
+      </span>
+      <div className="overflow-hidden flex-shrink-0 relative h-[12rem] w-full z-0 rounded-xl">
         <Image
           alt={`${project.title} ${t('project-image-alt')}`}
           src={project.img}
           fill
-          className="object-cover"
+          className="object-cover z-0"
           sizes="100%"
         />
       </div>
       <div className="flex flex-col h-full w-full gap-5 sm:gap-[0.875rem]">
-        <div className="flex flex-col gap-3 sm:gap-[0.875rem]">
-          <span className="text-primary font-semibold text-lg/5">
-            {project.stack}
-          </span>
-          <h4 className="text-title text-3xl/8 ">{project.title}</h4>
-        </div>
+        <h4 className="text-title text-3xl/8 ">{project.title}</h4>
 
         <P className="text-sm/4 sm:text-base/4 sm:tracking-[0em] line-clamp-[9]">
           {project.description[locale]}
