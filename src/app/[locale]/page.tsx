@@ -10,7 +10,11 @@ import { AboutImage } from '@/components/svg-components/about-image'
 import { HeroImage } from '@/components/svg-components/hero-image'
 import { IconEmail } from '@/components/svg-components/icon-email'
 import { IconGit } from '@/components/svg-components/icon-git'
-import { getCurrentLocale, getScopedI18n } from '@/lib/locale/server'
+import {
+  getCurrentLocale,
+  getScopedI18n,
+  getStaticParams,
+} from '@/lib/locale/server'
 import { GetPortfolioProjectsData } from '@/lib/services/get-portfolio-projects-data'
 import { PortfolioData } from '@/lib/types/portfolio-data'
 import { skills } from '@/lib/utils/skill-data'
@@ -19,6 +23,10 @@ import Link from 'next/link'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { ProjectsCarousel } from '@/components/carousel/projects-carousel'
+
+export function generateStaticParams() {
+  return getStaticParams()
+}
 
 export default async function Home({ params }: { params: { locale: string } }) {
   setStaticParamsLocale(params.locale)

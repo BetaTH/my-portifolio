@@ -1,3 +1,4 @@
+import { GetPortfolioProjectsData } from '@/lib/services/get-portfolio-projects-data'
 import { PutPortfolioProjectsData } from '@/lib/services/put-portfolio-projects-data'
 import { env } from '@/lib/utils/env'
 import { revalidatePath } from 'next/cache'
@@ -69,4 +70,21 @@ export async function PUT(request: NextRequest) {
     { revalidated: true, now: new Date() },
     { status: 200 },
   )
+}
+
+export async function GET(request: NextRequest) {
+  const secret = request.nextUrl.searchParams.get('secret')
+  if (secret !== env.REVALIDATE_KEY) {
+    return NextResponse.json({ message: 'unauthorized' }, { status: 401 })
+  }
+
+  try {
+    const data = await GetPortfolioProjectsData()
+    return NextResponse.json(await data.json())
+  } catch (e) {
+    return NextResponse.json(
+      { message: 'Some error on revalidating' },
+      { status: 500 },
+    )
+  }
 }
