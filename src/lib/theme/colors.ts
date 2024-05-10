@@ -1,4 +1,8 @@
 export const colors = {
+  black: '#000000',
+  white: '#FFFFFF',
+  success: '#00B894',
+  error: '#EF4444',
   body: '#282C33',
   primary: '#C778DD',
   title: '#FFFFFF',

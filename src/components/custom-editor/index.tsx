@@ -7,6 +7,8 @@ import { useContext, useEffect, useState } from 'react'
 import { Button } from '../buttons/button'
 import { projectsSchema } from '@/lib/shemas/portfolio-project-schema'
 import { ZodError } from 'zod'
+import toast from 'react-hot-toast'
+import { colors } from '@/lib/theme/colors'
 
 export default function CustomEditor({ data }: { data: PortfolioData }) {
   const [portfolioDataString, setPortfolioDataString] = useState<string>(
@@ -37,11 +39,33 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
       const portfolioDataValidated: PortfolioData =
         projectsSchema.parse(portfolioData)
       console.log(portfolioDataValidated)
+      toast('Success', {
+        position: 'bottom-right',
+        style: {
+          backgroundColor: colors.success,
+          color: colors.black,
+          zIndex: 1000,
+        },
+      })
     } catch (error) {
       if (error instanceof ZodError) {
-        console.log(error)
+        toast('Error', {
+          position: 'bottom-right',
+          style: {
+            backgroundColor: colors.error,
+            color: colors.white,
+            zIndex: 1000,
+          },
+        })
       }
-      console.log(error)
+      toast('Error', {
+        position: 'bottom-right',
+        style: {
+          backgroundColor: colors.error,
+          color: colors.white,
+          zIndex: 1000,
+        },
+      })
     }
   }
 
