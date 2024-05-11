@@ -19,7 +19,6 @@ const navigation: ['skills', 'about', 'projects', 'contact'] = [
 ]
 
 export function Header({ isAdmin = false }: { isAdmin?: boolean }) {
-  const t = useScopedI18n('header')
   const [isActive, setIsActive] = useState(false)
   const toggleMenu = () => {
     if (window.innerWidth < 859) {
@@ -51,45 +50,70 @@ export function Header({ isAdmin = false }: { isAdmin?: boolean }) {
               </Link>
               <MenuButton isActive={isActive} toggleMenu={toggleMenu} />
             </div>
-            <div
-              className={cn(
-                'transition-all translate-x-0 2md:visible flex duration-300 2md:h-full 2md:overflow-hidden 2md:fixed 2md:top-0 2md:right-0 2md:w-[17.0625rem] 2md:bg-body 2md:-z-10',
-                {
-                  '2md:translate-x-full 2md:invisible': !isActive,
-                },
-              )}
-            >
-              <nav
-                className={`flex gap-6 items-center 2md:w-full 2md:flex-col 2md:gap-9 justify-center 2md:justify-normal 2md:h-full 2md:mt-[4.5rem] 2md:pt-[5rem]`}
-              >
-                <ul className="flex gap-6 2md:flex-col items-center justify-center">
-                  {navigation.map((item) => (
-                    <li key={item}>
-                      <LinkButton onClick={toggleMenu} href={`/#${item}`}>
-                        {t(item)}
-                      </LinkButton>
-                    </li>
-                  ))}
-                </ul>
-                {!isAdmin && (
-                  <>
-                    <div className="h-6 border border-gray-600 2md:h-0 2md:w-[75%]" />
-                    <div className="flex gap-6">
-                      <LangButton />
-                      <Button asChild>
-                        <Link href={t('resumeLink')} target="_blanck">
-                          {t('resume')}
-                          <IconDownload className="size-4 2md:size-5" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </>
-                )}
-              </nav>
-            </div>
+            <Nav isAdmin={isAdmin} />
+            {/* With Hamburger Menu - Responsive */}
+            <Nav
+              isAdmin={isAdmin}
+              isMobileVersion={{
+                isActive,
+                toggleMenu,
+              }}
+            />
           </div>
         </div>
       </header>
     </>
+  )
+}
+interface NavProps {
+  isAdmin: boolean
+  isMobileVersion?: {
+    isActive: boolean
+    toggleMenu: () => void
+  }
+}
+
+function Nav({ isAdmin, isMobileVersion }: NavProps) {
+  const t = useScopedI18n('header')
+  return (
+    <div
+      className={cn('2md:hidden', {
+        'transition-all translate-x-0 hidden 2md:block fixed 2md:visible duration-300 h-full top-0 right-0 w-[17.0625rem] bg-body -z-10':
+          isMobileVersion,
+        'translate-x-full invisible':
+          isMobileVersion && !isMobileVersion.isActive,
+      })}
+    >
+      <nav
+        className={`flex gap-6 items-center 2md:w-full 2md:flex-col 2md:gap-9 justify-center 2md:justify-normal 2md:h-full 2md:mt-[4.5rem] 2md:pt-[5rem]`}
+      >
+        <ul className="flex gap-6 2md:flex-col items-center justify-center">
+          {navigation.map((item) => (
+            <li key={item}>
+              <LinkButton
+                onClick={isMobileVersion?.toggleMenu}
+                href={`/#${item}`}
+              >
+                {t(item)}
+              </LinkButton>
+            </li>
+          ))}
+        </ul>
+        {!isAdmin && (
+          <>
+            <div className="h-6 border border-gray-600 2md:h-0 2md:w-[75%]" />
+            <div className="flex gap-6">
+              <LangButton />
+              <Button asChild>
+                <Link href={t('resumeLink')} target="_blanck">
+                  {t('resume')}
+                  <IconDownload className="size-4 2md:size-5" />
+                </Link>
+              </Button>
+            </div>
+          </>
+        )}
+      </nav>
+    </div>
   )
 }

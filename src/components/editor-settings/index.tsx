@@ -7,16 +7,20 @@ import { Overlay } from '../layout/overlay'
 import { LinkButton } from '../buttons/link-button'
 import { Logout } from '../svg-components/logout'
 import { X } from '../svg-components/x'
-import { useMediaQuery } from '@/lib/hooks/useMediaQuery'
 import { EditorContentContext } from '@/contexts/editor-content-context'
 import { UpdatePortfolioDataContext } from '@/contexts/update-portfolio-data-context'
 
-export function EditorSettings() {
+interface EditorSettingsProps {
+  isMobileVersion?: boolean
+}
+
+export function EditorSettings({
+  isMobileVersion = false,
+}: EditorSettingsProps) {
   const { handleFormatDocument } = useContext(EditorContentContext)
   const { isSaving, handleSaveData } = useContext(UpdatePortfolioDataContext)
 
   const [isActive, setIsActive] = useState(false)
-  const { isMobile } = useMediaQuery()
   function toggleSettings() {
     setIsActive((prev) => !prev)
   }
@@ -26,13 +30,17 @@ export function EditorSettings() {
       <Overlay
         isActive={isActive}
         toggle={toggleSettings}
-        className="sm:block z-[200]"
+        className="sm:block sm:z-[200]"
       />
       <div
         className={cn(
-          ' absolute bg-body right-0 top-0 h-full w-60 flex flex-col items-center gap-6 py-10 px-5 border-l border-gray-200/50',
-          'sm:fixed sm:translate-y-0 visible sm:transition-all sm:duration-300 sm:w-full z-[210] sm:h-[50%] sm:top-auto sm:bottom-0 sm:rounded-t-3xl sm:border sm:px-10 sm:pt-14',
-          { 'sm:translate-y-full sm:invisible': !isActive },
+          'bg-body border-gray-200/50 gap-6 flex right-0 top-0 h-full flex-col items-center py-10 px-5 border-l w-60',
+          {
+            'absolute sm:hidden': !isMobileVersion,
+            'hidden sm:flex fixed translate-y-0 visible transition-all duration-300 w-full z-[210] h-[50%] top-auto bottom-0 rounded-t-3xl border px-10 pt-14':
+              isMobileVersion,
+            'translate-y-full invisible': isMobileVersion && !isActive,
+          },
         )}
       >
         <X
@@ -46,7 +54,7 @@ export function EditorSettings() {
           disabled={isSaving}
           onClick={() => {
             handleSaveData()
-            isMobile && toggleSettings()
+            isMobileVersion && toggleSettings()
           }}
           className="w-full"
         >
@@ -56,7 +64,7 @@ export function EditorSettings() {
           disabled={isSaving}
           onClick={() => {
             handleFormatDocument()
-            isMobile && toggleSettings()
+            isMobileVersion && toggleSettings()
           }}
           className="w-full"
         >

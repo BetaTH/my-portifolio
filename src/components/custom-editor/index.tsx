@@ -72,6 +72,7 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
         />
       </div>
       <EditorSettings />
+      <EditorSettings isMobileVersion />
     </div>
   )
 }
