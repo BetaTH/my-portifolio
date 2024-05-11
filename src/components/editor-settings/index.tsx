@@ -7,31 +7,36 @@ import { Overlay } from '../layout/overlay'
 import { LinkButton } from '../buttons/link-button'
 import { Logout } from '../svg-components/logout'
 import { X } from '../svg-components/x'
+import { useMediaQuery } from '@/lib/hooks/useMediaQuery'
 
 interface EditorSettingsProps {
+  isSaving: boolean
   handleSave: () => void
   handleFormatDocument: () => void
 }
 
 export function EditorSettings({
+  isSaving,
   handleSave,
   handleFormatDocument,
 }: EditorSettingsProps) {
   const [isActive, setIsActive] = useState(false)
+  const { isMobile } = useMediaQuery()
   function toggleSettings() {
     setIsActive((prev) => !prev)
   }
+
   return (
     <>
       <Overlay
         isActive={isActive}
         toggle={toggleSettings}
-        className="sm:block"
+        className="sm:block z-[200]"
       />
       <div
         className={cn(
           ' absolute bg-body right-0 top-0 h-full w-60 flex flex-col items-center gap-6 py-10 px-5 border-l border-gray-200/50',
-          'sm:fixed sm:translate-y-0 visible sm:transition-all sm:duration-300 sm:w-full z-50 sm:h-[50%] sm:top-auto sm:bottom-0 sm:rounded-t-3xl sm:border sm:px-10 sm:pt-14',
+          'sm:fixed sm:translate-y-0 visible sm:transition-all sm:duration-300 sm:w-full z-[210] sm:h-[50%] sm:top-auto sm:bottom-0 sm:rounded-t-3xl sm:border sm:px-10 sm:pt-14',
           { 'sm:translate-y-full sm:invisible': !isActive },
         )}
       >
@@ -42,10 +47,24 @@ export function EditorSettings({
         <p className="text-2xl border-b border-primary w-full text-center pb-1 sm:pb-3">
           Settings
         </p>
-        <Button onClick={handleSave} className="w-full">
+        <Button
+          disabled={isSaving}
+          onClick={() => {
+            handleSave()
+            isMobile && toggleSettings()
+          }}
+          className="w-full"
+        >
           Save
         </Button>
-        <Button onClick={handleFormatDocument} className="w-full">
+        <Button
+          disabled={isSaving}
+          onClick={() => {
+            handleFormatDocument()
+            isMobile && toggleSettings()
+          }}
+          className="w-full"
+        >
           Format
         </Button>
         <LinkButton asChild>

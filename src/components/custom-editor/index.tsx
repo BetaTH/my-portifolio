@@ -9,6 +9,9 @@ import { ZodError } from 'zod'
 import toast from 'react-hot-toast'
 import { CustomToast } from '../layout/toast'
 import { EditorSettings } from '../editor-settings'
+import { Overlay } from '../layout/overlay'
+import { useMediaQuery } from '@/lib/hooks/useMediaQuery'
+import { Loading } from '../svg-components/loading'
 
 export default function CustomEditor({ data }: { data: PortfolioData }) {
   const [portfolioDataString, setPortfolioDataString] = useState<string>(
@@ -18,22 +21,15 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
     useContext(EditorContentContext)
 
   const [showLineNumber, setShowLineNumbers] = useState(true)
+  const [isSaving, setIsSaving] = useState(false)
+  const { isMobile } = useMediaQuery()
 
   useEffect(() => {
-    const handleResize = () =>
-      window.innerWidth <= 640
-        ? setShowLineNumbers(false)
-        : setShowLineNumbers(true)
-
-    window.addEventListener('resize', handleResize)
-    handleResize()
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  })
+    isMobile ? setShowLineNumbers(false) : setShowLineNumbers(true)
+  }, [isMobile])
 
   async function handleSave() {
+    setIsSaving(true)
     try {
       const portfolioData = JSON.parse(portfolioDataString)
       const portfolioDataValidated: PortfolioData =
@@ -91,41 +87,50 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
           )
         })
       }
+    } finally {
+      setIsSaving(false)
     }
   }
 
   return (
-    <div className="h-full w-full relative">
-      <Editor
-        className={cn('pr-60 sm:p-0', {
-          invisible: !isEditorReady,
-        })}
-        onChange={(value) => {
-          value && setPortfolioDataString(value)
-        }}
-        onMount={handleEditorDidMount}
-        value={portfolioDataString}
-        defaultLanguage="json"
-        options={{
-          minimap: {
-            enabled: false,
-          },
-          lineNumbers: showLineNumber ? 'on' : 'off',
-          rulers: [90, 120],
-          renderLineHighlight: 'gutter',
-          fontSize: 14,
-          lineHeight: 20,
-          fontFamily: 'JetBrains Mono, Menlo, monospace',
-          fontLigatures: true,
-          'semanticHighlighting.enabled': true,
-          bracketPairColorization: {
-            enabled: true,
-          },
-          wordWrap: 'on',
-          tabSize: 2,
-        }}
-      />
+    <div className="pr-60 sm:p-0 h-full w-full relative">
+      <div className="w-full h-full relative">
+        <Overlay isActive={isSaving} className="flex absolute z-[250]">
+          <Loading className="size-20 text-primary" />
+        </Overlay>
+
+        <Editor
+          className={cn('', {
+            invisible: !isEditorReady,
+          })}
+          onChange={(value) => {
+            value && setPortfolioDataString(value)
+          }}
+          onMount={handleEditorDidMount}
+          value={portfolioDataString}
+          defaultLanguage="json"
+          options={{
+            minimap: {
+              enabled: false,
+            },
+            lineNumbers: showLineNumber ? 'on' : 'off',
+            rulers: [90, 120],
+            renderLineHighlight: 'gutter',
+            fontSize: 14,
+            lineHeight: 20,
+            fontFamily: 'JetBrains Mono, Menlo, monospace',
+            fontLigatures: true,
+            'semanticHighlighting.enabled': true,
+            bracketPairColorization: {
+              enabled: true,
+            },
+            wordWrap: 'on',
+            tabSize: 2,
+          }}
+        />
+      </div>
       <EditorSettings
+        isSaving={isSaving}
         handleSave={handleSave}
         handleFormatDocument={handleFormatDocument}
       />

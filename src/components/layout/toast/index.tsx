@@ -10,7 +10,7 @@ export function CustomToast({ title, message, feedback }: CustomToastProps) {
   return (
     <div
       className={cn(
-        'p-2 rounded-lg bg-gray-800/90 border w-60 border-gray-200/50',
+        'p-2 sm:px-4 rounded-lg bg-gray-800/90 border w-60 border-gray-200/50',
         {
           'bg-success': feedback === 'success',
           'bg-error': feedback === 'error',
