@@ -2,24 +2,19 @@
 import { cn } from '@/lib/utils/cn'
 import { Button } from '../buttons/button'
 import { Settings } from '../svg-components/settings'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Overlay } from '../layout/overlay'
 import { LinkButton } from '../buttons/link-button'
 import { Logout } from '../svg-components/logout'
 import { X } from '../svg-components/x'
 import { useMediaQuery } from '@/lib/hooks/useMediaQuery'
+import { EditorContentContext } from '@/contexts/editor-content-context'
+import { UpdatePortfolioDataContext } from '@/contexts/update-portfolio-data-context'
 
-interface EditorSettingsProps {
-  isSaving: boolean
-  handleSave: () => void
-  handleFormatDocument: () => void
-}
+export function EditorSettings() {
+  const { handleFormatDocument } = useContext(EditorContentContext)
+  const { isSaving, handleSaveData } = useContext(UpdatePortfolioDataContext)
 
-export function EditorSettings({
-  isSaving,
-  handleSave,
-  handleFormatDocument,
-}: EditorSettingsProps) {
   const [isActive, setIsActive] = useState(false)
   const { isMobile } = useMediaQuery()
   function toggleSettings() {
@@ -50,7 +45,7 @@ export function EditorSettings({
         <Button
           disabled={isSaving}
           onClick={() => {
-            handleSave()
+            handleSaveData()
             isMobile && toggleSettings()
           }}
           className="w-full"

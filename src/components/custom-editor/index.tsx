@@ -1,96 +1,33 @@
 'use client'
-import { EditorContentContext } from '@/contexts/EditorContentContext'
 import { PortfolioData } from '@/lib/types/portfolio-data'
 import { cn } from '@/lib/utils/cn'
 import Editor from '@monaco-editor/react'
 import { useContext, useEffect, useState } from 'react'
-import { projectsSchema } from '@/lib/shemas/portfolio-project-schema'
-import { ZodError } from 'zod'
-import toast from 'react-hot-toast'
-import { CustomToast } from '../layout/toast'
 import { EditorSettings } from '../editor-settings'
 import { Overlay } from '../layout/overlay'
 import { useMediaQuery } from '@/lib/hooks/useMediaQuery'
 import { Loading } from '../svg-components/loading'
+import { EditorContentContext } from '@/contexts/editor-content-context'
+import { UpdatePortfolioDataContext } from '@/contexts/update-portfolio-data-context'
 
 export default function CustomEditor({ data }: { data: PortfolioData }) {
-  const [portfolioDataString, setPortfolioDataString] = useState<string>(
-    JSON.stringify(data, null, 2),
-  )
-  const { handleEditorDidMount, isEditorReady, handleFormatDocument } =
+  const { handleEditorDidMount, isEditorReady } =
     useContext(EditorContentContext)
+  const { setPortfolioDataString, isSaving, portfolioDataString } = useContext(
+    UpdatePortfolioDataContext,
+  )
+
+  useEffect(() => {
+    setPortfolioDataString(JSON.stringify(data, null, 2))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
 
   const [showLineNumber, setShowLineNumbers] = useState(true)
-  const [isSaving, setIsSaving] = useState(false)
   const { isMobile } = useMediaQuery()
 
   useEffect(() => {
     isMobile ? setShowLineNumbers(false) : setShowLineNumbers(true)
   }, [isMobile])
-
-  async function handleSave() {
-    setIsSaving(true)
-    try {
-      const portfolioData = JSON.parse(portfolioDataString)
-      const portfolioDataValidated: PortfolioData =
-        projectsSchema.parse(portfolioData)
-      const res = await fetch('/api/projects?secret=94250107', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(portfolioDataValidated),
-      })
-
-      const response = await res.json()
-
-      if (!res.ok) {
-        toast.custom(() => {
-          return (
-            <CustomToast
-              title={`${res.status} Error`}
-              message={response.message}
-              feedback="error"
-            />
-          )
-        })
-      } else {
-        toast.custom(() => {
-          return (
-            <CustomToast
-              title="Success"
-              message="Portfolio data saved"
-              feedback="success"
-            />
-          )
-        })
-      }
-    } catch (error) {
-      if (error instanceof ZodError) {
-        toast.custom(() => {
-          return (
-            <CustomToast
-              title="Error"
-              message="Data validation error"
-              feedback="error"
-            />
-          )
-        })
-      } else {
-        toast.custom(() => {
-          return (
-            <CustomToast
-              title="Error"
-              message="Json parse error"
-              feedback="error"
-            />
-          )
-        })
-      }
-    } finally {
-      setIsSaving(false)
-    }
-  }
 
   return (
     <div className="pr-60 sm:p-0 h-full w-full relative">
@@ -103,6 +40,11 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
           className={cn('', {
             invisible: !isEditorReady,
           })}
+          loading={
+            <Overlay isActive={true} className="flex relative w-full h-full">
+              <Loading className="size-20 text-primary" />
+            </Overlay>
+          }
           onChange={(value) => {
             value && setPortfolioDataString(value)
           }}
@@ -129,11 +71,7 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
           }}
         />
       </div>
-      <EditorSettings
-        isSaving={isSaving}
-        handleSave={handleSave}
-        handleFormatDocument={handleFormatDocument}
-      />
+      <EditorSettings />
     </div>
   )
 }
