@@ -4,11 +4,11 @@ import { PortfolioData } from '@/lib/types/portfolio-data'
 import { cn } from '@/lib/utils/cn'
 import Editor from '@monaco-editor/react'
 import { useContext, useEffect, useState } from 'react'
-import { Button } from '../buttons/button'
 import { projectsSchema } from '@/lib/shemas/portfolio-project-schema'
 import { ZodError } from 'zod'
 import toast from 'react-hot-toast'
 import { CustomToast } from '../layout/toast'
+import { EditorSettings } from '../editor-settings'
 
 export default function CustomEditor({ data }: { data: PortfolioData }) {
   const [portfolioDataString, setPortfolioDataString] = useState<string>(
@@ -95,9 +95,9 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
   }
 
   return (
-    <div className="h-full flex w-full relative">
+    <div className="h-full w-full relative">
       <Editor
-        className={cn('w-full h-full pr-60', {
+        className={cn('pr-60 sm:p-0', {
           invisible: !isEditorReady,
         })}
         onChange={(value) => {
@@ -125,17 +125,10 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
           tabSize: 2,
         }}
       />
-      <div className="absolute right-0 top-0 h-full w-60 flex flex-col  items-center gap-6 px-5 border-l border-gray-200/50">
-        <p className="text-2xl border-b border-primary w-full text-center pb-1">
-          Options
-        </p>
-        <Button onClick={handleSave} className="w-full">
-          Save
-        </Button>
-        <Button onClick={handleFormatDocument} className="w-full">
-          Format
-        </Button>
-      </div>
+      <EditorSettings
+        handleSave={handleSave}
+        handleFormatDocument={handleFormatDocument}
+      />
     </div>
   )
 }

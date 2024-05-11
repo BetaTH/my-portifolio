@@ -36,7 +36,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
 
   const data: PortfolioData = await res.json()
   return (
-    <main id={'home'} className="bg-body pt-[4.75rem]">
+    <main id={'home'} className="bg-body pt-[4.75rem] 2md:pt-[4.5rem]">
       <Header />
       <div className="px-6">
         <div className="mx-auto w-[65rem] max-w-full">

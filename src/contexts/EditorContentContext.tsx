@@ -35,7 +35,6 @@ export function EditorContentContextProvider({
     monacoRef.current = monaco
     editorRef.current = editor
     setIsEditorReady(true)
-    // editor.getAction('editor.action.formatDocument')?.run()
   }, [])
 
   function handleFormatDocument() {

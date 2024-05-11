@@ -8,7 +8,10 @@ export default async function EditorPage() {
   const res = await GetPortfolioProjectsData()
   const data: PortfolioData = await res.json()
   return (
-    <main id={'home'} className="bg-body pt-[4.75rem] h-screen">
+    <main
+      id={'home'}
+      className="bg-body pt-[4.75rem] h-screen 2md:pt-[4.5rem] sm:h-svh"
+    >
       <Header isAdmin />
       <CustomEditor data={data} />
     </main>
