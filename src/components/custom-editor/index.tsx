@@ -33,7 +33,7 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
     <div className="pr-60 sm:p-0 h-full w-full relative">
       <div className="w-full h-full relative">
         <Overlay isActive={isSaving} className="flex absolute z-[250]">
-          <Loading className="size-20 text-primary" />
+          <Loading className="size-10 sm:size-14 text-primary" />
         </Overlay>
 
         <Editor
@@ -42,7 +42,7 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
           })}
           loading={
             <Overlay isActive={true} className="flex relative w-full h-full">
-              <Loading className="size-20 text-primary" />
+              <Loading className="size-10 sm:size-14 text-primary" />
             </Overlay>
           }
           onChange={(value) => {
