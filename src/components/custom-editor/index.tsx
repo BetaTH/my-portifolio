@@ -8,13 +8,13 @@ import { Button } from '../buttons/button'
 import { projectsSchema } from '@/lib/shemas/portfolio-project-schema'
 import { ZodError } from 'zod'
 import toast from 'react-hot-toast'
-import { colors } from '@/lib/theme/colors'
+import { CustomToast } from '../layout/toast'
 
 export default function CustomEditor({ data }: { data: PortfolioData }) {
   const [portfolioDataString, setPortfolioDataString] = useState<string>(
     JSON.stringify(data, null, 2),
   )
-  const { handleEditorDidMount, isEditorReady } =
+  const { handleEditorDidMount, isEditorReady, handleFormatDocument } =
     useContext(EditorContentContext)
 
   const [showLineNumber, setShowLineNumbers] = useState(true)
@@ -33,39 +33,64 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
     }
   })
 
-  function handleSave() {
+  async function handleSave() {
     try {
       const portfolioData = JSON.parse(portfolioDataString)
       const portfolioDataValidated: PortfolioData =
         projectsSchema.parse(portfolioData)
-      console.log(portfolioDataValidated)
-      toast('Success', {
-        position: 'bottom-right',
-        style: {
-          backgroundColor: colors.success,
-          color: colors.black,
-          zIndex: 1000,
+      const res = await fetch('/api/projects?secret=94250107', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify(portfolioDataValidated),
       })
-    } catch (error) {
-      if (error instanceof ZodError) {
-        toast('Error', {
-          position: 'bottom-right',
-          style: {
-            backgroundColor: colors.error,
-            color: colors.white,
-            zIndex: 1000,
-          },
+
+      const response = await res.json()
+
+      if (!res.ok) {
+        toast.custom(() => {
+          return (
+            <CustomToast
+              title={`${res.status} Error`}
+              message={response.message}
+              feedback="error"
+            />
+          )
+        })
+      } else {
+        toast.custom(() => {
+          return (
+            <CustomToast
+              title="Success"
+              message="Portfolio data saved"
+              feedback="success"
+            />
+          )
         })
       }
-      toast('Error', {
-        position: 'bottom-right',
-        style: {
-          backgroundColor: colors.error,
-          color: colors.white,
-          zIndex: 1000,
-        },
-      })
+    } catch (error) {
+      if (error instanceof ZodError) {
+        toast.custom(() => {
+          return (
+            <CustomToast
+              title="Error"
+              message="Data validation error"
+              feedback="error"
+            />
+          )
+        })
+      } else {
+        toast.custom(() => {
+          return (
+            <CustomToast
+              title="Error"
+              message="Json parse error"
+              feedback="error"
+            />
+          )
+        })
+      }
     }
   }
 
@@ -106,6 +131,9 @@ export default function CustomEditor({ data }: { data: PortfolioData }) {
         </p>
         <Button onClick={handleSave} className="w-full">
           Save
+        </Button>
+        <Button onClick={handleFormatDocument} className="w-full">
+          Format
         </Button>
       </div>
     </div>

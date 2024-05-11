@@ -8,6 +8,7 @@ const envSchema = z.object({
   ACCESS_KEY_ID: z.string(),
   SECRET_ACCESS_KEY: z.string(),
   REVALIDATE_KEY: z.string(),
+  PORTFOLIO_DATA_FILE_NAME: z.string().optional(),
 })
 
 export let env: z.infer<typeof envSchema>

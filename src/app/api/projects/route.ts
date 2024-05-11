@@ -19,13 +19,13 @@ export async function PUT(request: NextRequest) {
   } catch (error) {
     if (error instanceof ZodError) {
       return NextResponse.json(
-        { message: 'Request validation error' },
+        { message: 'Request validation error', error: true },
         { status: 400 },
       )
     }
     return NextResponse.json(
       { message: 'Some error on validation' },
-      { status: 500 },
+      { status: 400 },
     )
   }
 
@@ -33,7 +33,7 @@ export async function PUT(request: NextRequest) {
     await PutPortfolioProjectsData({ data: dataParsed })
   } catch (e) {
     return NextResponse.json(
-      { message: 'Some error on revalidating' },
+      { message: 'Some error on revalidating', error: true },
       { status: 500 },
     )
   }
