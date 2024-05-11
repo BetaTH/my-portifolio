@@ -1,6 +1,5 @@
 'use client'
 import { Button } from '@/components/buttons/button'
-import { HomeButton } from '@/components/buttons/home-button'
 import { LangButton } from '@/components/buttons/lang-button'
 import { LinkButton } from '@/components/buttons/link-button'
 import { MenuButton } from '@/components/buttons/menu-button'
@@ -10,6 +9,7 @@ import { cn } from '@/lib/utils/cn'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Overlay } from '../overlay'
+import { Logo } from '@/components/svg-components/logo-image'
 
 const navigation: ['skills', 'about', 'projects', 'contact'] = [
   'skills',
@@ -43,7 +43,12 @@ export function Header({ isAdmin = false }: { isAdmin?: boolean }) {
         <div className="items-center flex px-6 w-full bg-body border-b border-zinc-50/20">
           <div className="mx-auto w-[65rem] min-h-[4.75rem] 2md:min-h-[4.5rem] py-3 max-w-full flex justify-between items-center gap-6 2md:gap-0 2md:flex-col 2md:justify-center">
             <div className="flex w-fit 2md:w-full justify-between items-center">
-              <HomeButton onClick={() => isActive && setIsActive(false)} />
+              <Link
+                href={'/#home'}
+                onClick={() => isActive && setIsActive(false)}
+              >
+                <Logo className="w-[5.5rem] h-9 text-gray-50 hover:text-primary transition-colors" />
+              </Link>
               <MenuButton isActive={isActive} toggleMenu={toggleMenu} />
             </div>
             <div
