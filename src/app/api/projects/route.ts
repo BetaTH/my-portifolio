@@ -8,7 +8,7 @@ import { verifySession } from '@/lib/dal'
 export async function PUT(request: NextRequest) {
   const session = await verifySession()
 
-  if (!session.isAuth) {
+  if (!session.hasSession) {
     return NextResponse.json({ message: 'unauthorized' }, { status: 200 })
   }
 

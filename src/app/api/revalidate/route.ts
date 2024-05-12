@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 export async function GET() {
   const session = await verifySession()
 
-  if (!session.isAuth) {
+  if (!session.hasSession) {
     return NextResponse.json({ message: 'unauthorized' }, { status: 200 })
   }
 

@@ -1,6 +1,7 @@
 import 'server-only'
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
+import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 
 const secretKey = process.env.JWT_SECRET_KEY
 const encodedKey = new TextEncoder().encode(secretKey)
@@ -29,9 +30,14 @@ export async function verifyToken(token: string | undefined = '') {
   }
 }
 
-export async function createSession(username: string) {
+function createExpiresAt() {
   const days = 7 * 24 * 60 * 60 * 1000 // time in milliseconds
   const expiresAt = new Date(Date.now() + days)
+  return expiresAt
+}
+
+export async function createSession(username: string) {
+  const expiresAt = createExpiresAt()
   const token = await createToken({ username, expiresAt })
 
   cookies().set('session', token, {
@@ -41,6 +47,40 @@ export async function createSession(username: string) {
     sameSite: 'strict',
     path: '/',
   })
+}
+
+export async function getSession() {
+  const cookie = cookies().get('session')?.value
+  const session = await verifyToken(cookie)
+  const hasSession = session ? !!session.username : false
+  if (hasSession && session) {
+    const right: {
+      hasSession: true
+      username: string
+    } = { hasSession: true, username: session.username }
+    return right
+  } else {
+    const left: {
+      hasSession: false
+      username: undefined
+    } = { hasSession: false, username: undefined }
+    return left
+  }
+}
+
+export async function getNewSessionCookie(username: string) {
+  const expiresAt = createExpiresAt()
+  const token = await createToken({ username, expiresAt })
+  const responseCookie: ResponseCookie = {
+    name: 'session',
+    value: token,
+    httpOnly: true,
+    secure: true,
+    expires: expiresAt,
+    sameSite: 'strict',
+    path: '/',
+  }
+  return responseCookie
 }
 
 export function deleteSession() {
