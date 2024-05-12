@@ -8,7 +8,7 @@ import { verifySession } from '@/lib/dla'
 export async function PUT(request: NextRequest) {
   const session = await verifySession()
 
-  if (!session) {
+  if (!session.isAuth) {
     return NextResponse.json({ message: 'unauthorized' }, { status: 200 })
   }
 

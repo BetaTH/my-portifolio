@@ -14,7 +14,7 @@ export async function createToken(payload: SessionPayload) {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
-    .setExpirationTime('7d')
+    .setExpirationTime(payload.expiresAt)
     .sign(encodedKey)
 }
 
@@ -30,7 +30,8 @@ export async function verifyToken(token: string | undefined = '') {
 }
 
 export async function createSession(username: string) {
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+  const days = 7 * 24 * 60 * 60 * 1000 // time in milliseconds
+  const expiresAt = new Date(Date.now() + days)
   const token = await createToken({ username, expiresAt })
 
   cookies().set('session', token, {
