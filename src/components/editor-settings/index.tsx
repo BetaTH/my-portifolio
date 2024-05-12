@@ -25,6 +25,10 @@ export function EditorSettings({
     setIsActive((prev) => !prev)
   }
 
+  async function handleLogout() {
+    await fetch('/api/auth/logout')
+  }
+
   return (
     <>
       <Overlay
@@ -71,7 +75,7 @@ export function EditorSettings({
           Format
         </Button>
         <LinkButton asChild>
-          <button className="mt-auto ">
+          <button className="mt-auto" onClick={handleLogout}>
             Logout
             <Logout className="size-4 sm:size-5" />
           </button>

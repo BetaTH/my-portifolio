@@ -1,6 +1,5 @@
 import { EditorContentContextProvider } from '@/contexts/editor-content-context'
 import { UpdatePortfolioDataContextProvider } from '@/contexts/update-portfolio-data-context'
-import { Toaster } from 'react-hot-toast'
 
 export default function EditorLayout({
   children,
@@ -9,10 +8,7 @@ export default function EditorLayout({
 }) {
   return (
     <UpdatePortfolioDataContextProvider>
-      <EditorContentContextProvider>
-        {children}
-        <Toaster />
-      </EditorContentContextProvider>
+      <EditorContentContextProvider>{children}</EditorContentContextProvider>
     </UpdatePortfolioDataContextProvider>
   )
 }

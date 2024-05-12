@@ -3,6 +3,7 @@ import { Fira_Code as FiraCode, Fira_Sans as FiraSans } from 'next/font/google'
 import '../globals.css'
 import { getCurrentLocale, getScopedI18n } from '@/lib/locale/server'
 import { LocaleProvider } from '@/components/layout/locale-provider'
+import { Toaster } from 'react-hot-toast'
 const firaCode = FiraCode({ subsets: ['latin'] })
 const firaSans = FiraSans({
   weight: ['400', '500', '600', '700'],
@@ -47,7 +48,10 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${firaCode.className} ${firaSans.variable} relative`}>
-        <LocaleProvider locale={locale}>{children}</LocaleProvider>
+        <LocaleProvider locale={locale}>
+          {children}
+          <Toaster />
+        </LocaleProvider>
       </body>
     </html>
   )

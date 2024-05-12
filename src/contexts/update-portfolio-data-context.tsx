@@ -1,7 +1,7 @@
 'use client'
 
 import { CustomToast } from '@/components/layout/toast'
-import { projectsSchema } from '@/lib/shemas/portfolio-project-schema'
+import { projectsSchema } from '@/lib/schemas/portfolio-project-schema'
 import { PortfolioData } from '@/lib/types/portfolio-data'
 import { createContext, ReactNode, useState } from 'react'
 import toast from 'react-hot-toast'

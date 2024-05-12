@@ -1,16 +1,10 @@
 import { PutPortfolioProjectsData } from '@/lib/services/put-portfolio-projects-data'
-import { projectsSchema } from '@/lib/shemas/portfolio-project-schema'
-import { env } from '@/lib/utils/env'
+import { projectsSchema } from '@/lib/schemas/portfolio-project-schema'
 import { revalidatePath } from 'next/cache'
 import { NextResponse, NextRequest } from 'next/server'
 import { ZodError, z } from 'zod'
 
 export async function PUT(request: NextRequest) {
-  const secret = request.nextUrl.searchParams.get('secret')
-  if (secret !== env.REVALIDATE_KEY) {
-    return NextResponse.json({ message: 'unauthorized' }, { status: 401 })
-  }
-
   const data = await request.json()
   let dataParsed: z.infer<typeof projectsSchema>
 
