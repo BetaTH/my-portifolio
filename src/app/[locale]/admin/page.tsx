@@ -1,25 +1,32 @@
 'use client'
-import { Button } from '@/components/buttons/button'
+import { ButtonLoading } from '@/components/buttons/button-loading'
 import { Input } from '@/components/input'
 import { CustomToast } from '@/components/layout/toast'
 import { loginSchema } from '@/lib/schemas/login-schema'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, useState } from 'react'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
 
 export default function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+  const [inputData, setInputData] = useState({
+    username: '',
+    password: '',
+  })
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target
+    setInputData((prev) => ({ ...prev, [name]: value }))
+  }
 
   async function handleSubmit() {
-    const loginData = {
-      username,
-      password,
-    }
+    setIsLoading(true)
     let loginDataParsed: z.infer<typeof loginSchema>
 
     try {
-      loginDataParsed = loginSchema.parse(loginData)
+      loginDataParsed = loginSchema.parse(inputData)
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -28,23 +35,15 @@ export default function Login() {
         body: JSON.stringify(loginDataParsed),
       })
       const response = await res.json()
-      if (!res.ok) {
-        toast.custom(() => {
-          return (
-            <CustomToast
-              title={`${res.status} Error`}
-              message={response.message}
-              feedback="error"
-            />
-          )
-        })
+      if (res.ok) {
+        router.push('/admin/editor')
       } else {
         toast.custom(() => {
           return (
             <CustomToast
-              title="Success"
-              message="Portfolio data saved"
-              feedback="success"
+              title={`Error`}
+              message={response.message}
+              feedback="error"
             />
           )
         })
@@ -59,34 +58,44 @@ export default function Login() {
           />
         )
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
-    <main className="bg-body flex h-screen sm:h-svh">
+    <main className="bg-body flex h-screen sm:h-svh px-6">
       <form
         onSubmit={(e) => {
           e.preventDefault()
           handleSubmit()
         }}
-        className="m-auto flex flex-col gap-6 bg-gray-800/85 border-gray-200/50 border rounded-xl py-16 px-20"
+        className="m-auto bg-gray-800/80 border-gray-200/10 shadow-xl border rounded-xl py-10 px-6 "
       >
-        <h1 className="mb-4 text-3xl/8">Access your account!</h1>
-        <Input
-          type="text"
-          name="username"
-          label="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Input
-          type="password"
-          name="username"
-          label="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button className="2md:text-base">Login</Button>
+        <div className="flex flex-col gap-6 max-w-[20rem] m-auto">
+          <h1 className="mb-4 text-3xl/8">Access your account!</h1>
+          <Input
+            type="text"
+            name="username"
+            label="Username"
+            value={inputData.username}
+            onChange={handleChange}
+          />
+          <Input
+            type="password"
+            name="password"
+            label="Password"
+            value={inputData.password}
+            onChange={handleChange}
+          />
+          <ButtonLoading
+            isLoading={isLoading}
+            disabled={isLoading}
+            className="2md:text-base py-2 mt-3"
+          >
+            Login
+          </ButtonLoading>
+        </div>
       </form>
     </main>
   )

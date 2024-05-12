@@ -6,10 +6,14 @@ interface GetPortfolioProjectsDataProps {
   data: PortfolioData
 }
 
+const envFileName = env.PORTFOLIO_DATA_FILE_NAME
+
 export async function PutPortfolioProjectsData({
   data,
 }: GetPortfolioProjectsDataProps) {
-  const DataFileName = env.PORTFOLIO_DATA_FILE_NAME && 'portfolio-data.json'
+  const DataFileName = envFileName || 'portfolio-data.json'
+
+  console.log()
   await api(`portfolio-data/${DataFileName}`, {
     method: 'PUT',
     headers: {

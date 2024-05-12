@@ -32,7 +32,7 @@ export function Input({
         <input
           type={isPasswordVisible ? 'text' : type}
           className={cn(
-            'outline-none py-1 px-2 text-gray-100 text-base w-full bg-transparent',
+            'outline-none py-2 px-2 text-gray-100 text-base w-full bg-transparent',
           )}
           {...props}
         />

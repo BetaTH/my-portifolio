@@ -9,6 +9,8 @@ import { Logout } from '../svg-components/logout'
 import { X } from '../svg-components/x'
 import { EditorContentContext } from '@/contexts/editor-content-context'
 import { UpdatePortfolioDataContext } from '@/contexts/update-portfolio-data-context'
+import { useRouter } from 'next/navigation'
+import { ButtonLoading } from '../buttons/button-loading'
 
 interface EditorSettingsProps {
   isMobileVersion?: boolean
@@ -19,14 +21,22 @@ export function EditorSettings({
 }: EditorSettingsProps) {
   const { handleFormatDocument } = useContext(EditorContentContext)
   const { isSaving, handleSaveData } = useContext(UpdatePortfolioDataContext)
+  const router = useRouter()
 
   const [isActive, setIsActive] = useState(false)
+  const [isLoadingLogout, setIsLoadingLogout] = useState(false)
   function toggleSettings() {
     setIsActive((prev) => !prev)
   }
 
   async function handleLogout() {
-    await fetch('/api/auth/logout')
+    setIsLoadingLogout(true)
+    const res = await fetch('/api/auth/logout')
+
+    if (res.ok) {
+      router.push('/admin')
+    }
+    setIsLoadingLogout(false)
   }
 
   return (
@@ -54,28 +64,33 @@ export function EditorSettings({
         <p className="text-2xl border-b border-primary w-full text-center pb-1 sm:pb-3">
           Settings
         </p>
-        <Button
+        <ButtonLoading
+          isLoading={isSaving}
+          className="w-full"
           disabled={isSaving}
           onClick={() => {
             handleSaveData()
             isMobileVersion && toggleSettings()
           }}
-          className="w-full"
         >
           Save
-        </Button>
+        </ButtonLoading>
         <Button
+          className="w-full"
           disabled={isSaving}
           onClick={() => {
             handleFormatDocument()
             isMobileVersion && toggleSettings()
           }}
-          className="w-full"
         >
           Format
         </Button>
         <LinkButton asChild>
-          <button className="mt-auto" onClick={handleLogout}>
+          <button
+            className="mt-auto disabled:opacity-50 disabled:hover:text-gray-dark-600 disabled:cursor-not-allowed"
+            onClick={handleLogout}
+            disabled={isLoadingLogout}
+          >
             Logout
             <Logout className="size-4 sm:size-5" />
           </button>

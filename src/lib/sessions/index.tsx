@@ -19,7 +19,6 @@ export async function createToken(payload: SessionPayload) {
 }
 
 export async function verifyToken(token: string | undefined = '') {
-  console.log(token)
   try {
     const { payload } = await jwtVerify(token, encodedKey, {
       algorithms: ['HS256'],
@@ -38,7 +37,7 @@ export async function createSession(username: string) {
     httpOnly: true,
     secure: true,
     expires: expiresAt,
-    sameSite: true,
+    sameSite: 'strict',
     path: '/',
   })
 }
