@@ -3,7 +3,7 @@ import { projectsSchema } from '@/lib/schemas/portfolio-project-schema'
 import { revalidatePath } from 'next/cache'
 import { NextResponse, NextRequest } from 'next/server'
 import { ZodError, z } from 'zod'
-import { verifySession } from '@/lib/dla'
+import { verifySession } from '@/lib/dal'
 
 export async function PUT(request: NextRequest) {
   const session = await verifySession()

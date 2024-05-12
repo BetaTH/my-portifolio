@@ -1,4 +1,4 @@
-import { verifySession } from '@/lib/dla'
+import { verifySession } from '@/lib/dal'
 import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
 

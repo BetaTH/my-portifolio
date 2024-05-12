@@ -33,7 +33,7 @@ export function EditorSettings({
     setIsLoadingLogout(true)
     const res = await fetch('/api/auth/logout')
 
-    if (res.ok) {
+    if (res.ok && res.status === 200) {
       router.push('/admin')
     }
     setIsLoadingLogout(false)

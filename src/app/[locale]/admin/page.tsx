@@ -35,7 +35,7 @@ export default function Login() {
         body: JSON.stringify(loginDataParsed),
       })
       const response = await res.json()
-      if (res.ok) {
+      if (res.ok && res.status === 200) {
         router.push('/admin/editor')
       } else {
         toast.custom((t) => {
