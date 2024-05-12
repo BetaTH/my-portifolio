@@ -3,8 +3,15 @@ import { projectsSchema } from '@/lib/schemas/portfolio-project-schema'
 import { revalidatePath } from 'next/cache'
 import { NextResponse, NextRequest } from 'next/server'
 import { ZodError, z } from 'zod'
+import { verifySession } from '@/lib/dla'
 
 export async function PUT(request: NextRequest) {
+  const session = await verifySession()
+
+  if (!session) {
+    return NextResponse.json({ message: 'unauthorized' }, { status: 200 })
+  }
+
   const data = await request.json()
   let dataParsed: z.infer<typeof projectsSchema>
 

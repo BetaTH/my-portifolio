@@ -2,21 +2,21 @@ export const keyframes = {
   'slide-in-down': {
     '0%': {
       transform: 'translateY(-50%)',
-      opacity: 0,
+      opacity: '0',
     },
     '100%': {
       transform: 'translateY(0)',
-      opacity: 1,
+      opacity: '1',
     },
   },
   'slide-out-up': {
     '0%': {
       transform: 'translateY(0)',
-      opacity: 1,
+      opacity: '1',
     },
     '100%': {
       transform: 'translateY(-50%)',
-      opacity: 0,
+      opacity: '0',
     },
   },
 }
