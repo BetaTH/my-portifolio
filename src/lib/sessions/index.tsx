@@ -1,7 +1,7 @@
 import 'server-only'
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
-import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
+import { NextResponse } from 'next/server'
 
 const secretKey = process.env.JWT_SECRET_KEY
 const encodedKey = new TextEncoder().encode(secretKey)
@@ -68,10 +68,14 @@ export async function getSession() {
   }
 }
 
-export async function getNewSessionCookie(username: string) {
+export async function updateSessionMiddleware(
+  username: string,
+  res?: NextResponse,
+) {
+  const response = res || NextResponse.next()
   const expiresAt = createExpiresAt()
   const token = await createToken({ username, expiresAt })
-  const responseCookie: ResponseCookie = {
+  response.cookies.set({
     name: 'session',
     value: token,
     httpOnly: true,
@@ -79,8 +83,8 @@ export async function getNewSessionCookie(username: string) {
     expires: expiresAt,
     sameSite: 'strict',
     path: '/',
-  }
-  return responseCookie
+  })
+  return response
 }
 
 export function deleteSession() {

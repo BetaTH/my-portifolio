@@ -1,7 +1,7 @@
 // middleware.ts
 import { createI18nMiddleware } from 'next-international/middleware'
 import { NextRequest, NextResponse } from 'next/server'
-import { getNewSessionCookie, getSession } from './lib/sessions'
+import { getSession, updateSessionMiddleware } from './lib/sessions'
 
 const I18nMiddleware = createI18nMiddleware({
   locales: ['en', 'pt'],
@@ -34,10 +34,8 @@ export async function middleware(req: NextRequest) {
   }
 
   if (session.hasSession) {
-    const update = await getNewSessionCookie(session.username)
     const res = I18nMiddleware(req)
-    res.cookies.set(update)
-    return res
+    return await updateSessionMiddleware(session.username, res)
   }
 
   return I18nMiddleware(req)
