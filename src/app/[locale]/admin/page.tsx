@@ -38,23 +38,25 @@ export default function Login() {
       if (res.ok) {
         router.push('/admin/editor')
       } else {
-        toast.custom(() => {
+        toast.custom((t) => {
           return (
             <CustomToast
               title={`Error`}
               message={response.message}
               feedback="error"
+              isVisible={t.visible}
             />
           )
         })
       }
     } catch {
-      toast.custom(() => {
+      toast.custom((t) => {
         return (
           <CustomToast
             title="Error"
             message="Data validation error"
             feedback="error"
+            isVisible={t.visible}
           />
         )
       })

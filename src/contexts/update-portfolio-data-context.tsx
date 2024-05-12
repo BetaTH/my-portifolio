@@ -45,44 +45,48 @@ export function UpdatePortfolioDataContextProvider({
       const response = await res.json()
 
       if (!res.ok) {
-        toast.custom(() => {
+        toast.custom((t) => {
           return (
             <CustomToast
               title={`${res.status} Error`}
               message={response.message}
               feedback="error"
+              isVisible={t.visible}
             />
           )
         })
       } else {
-        toast.custom(() => {
+        toast.custom((t) => {
           return (
             <CustomToast
               title="Success"
               message="Portfolio data saved"
               feedback="success"
+              isVisible={t.visible}
             />
           )
         })
       }
     } catch (error) {
       if (error instanceof ZodError) {
-        toast.custom(() => {
+        toast.custom((t) => {
           return (
             <CustomToast
               title="Error"
               message="Data validation error"
               feedback="error"
+              isVisible={t.visible}
             />
           )
         })
       } else {
-        toast.custom(() => {
+        toast.custom((t) => {
           return (
             <CustomToast
               title="Error"
               message="Json parse error"
               feedback="error"
+              isVisible={t.visible}
             />
           )
         })
