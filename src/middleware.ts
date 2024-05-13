@@ -42,5 +42,10 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)'],
+  matcher: [
+    {
+      source: '/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)',
+      missing: [{ type: 'header', key: 'next-action' }],
+    },
+  ],
 }

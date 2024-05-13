@@ -27,6 +27,7 @@ export async function verifyToken(token: string | undefined = '') {
     return payload as SessionPayload
   } catch (error) {
     console.log('Failed to verify session')
+    return undefined
   }
 }
 
@@ -52,8 +53,7 @@ export async function createSession(username: string) {
 export async function getSession() {
   const cookie = cookies().get('session')?.value
   const session = await verifyToken(cookie)
-  const hasSession = session ? !!session.username : false
-  if (hasSession && session) {
+  if (!!session && !!session.username) {
     const right: {
       hasSession: true
       username: string
