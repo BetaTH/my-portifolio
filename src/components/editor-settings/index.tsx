@@ -11,6 +11,8 @@ import { EditorContentContext } from '@/contexts/editor-content-context'
 import { UpdatePortfolioDataContext } from '@/contexts/update-portfolio-data-context'
 import { useRouter } from 'next/navigation'
 import { ButtonLoading } from '../buttons/button-loading'
+import toast from 'react-hot-toast'
+import { CustomToast } from '../layout/toast'
 
 interface EditorSettingsProps {
   isMobileVersion?: boolean
@@ -24,19 +26,42 @@ export function EditorSettings({
   const router = useRouter()
 
   const [isActive, setIsActive] = useState(false)
-  const [isLoadingLogout, setIsLoadingLogout] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   function toggleSettings() {
     setIsActive((prev) => !prev)
   }
 
   async function handleLogout() {
-    setIsLoadingLogout(true)
+    setIsLoading(true)
     const res = await fetch('/api/auth/logout')
 
     if (res.ok && res.status === 200) {
       router.push('/admin')
     }
-    setIsLoadingLogout(false)
+    setIsLoading(false)
+  }
+
+  async function handleUpdateCache() {
+    setIsLoading(true)
+    const res = await fetch('/api/portfolio')
+
+    if (!res.ok && res.status === 401) {
+      router.push('/admin')
+    }
+
+    if (res.ok && res.status === 200) {
+      toast.custom((t) => {
+        return (
+          <CustomToast
+            title="Success"
+            message="Cache updated"
+            feedback="success"
+            isVisible={t.visible}
+          />
+        )
+      })
+    }
+    setIsLoading(false)
   }
 
   return (
@@ -85,11 +110,22 @@ export function EditorSettings({
         >
           Format
         </Button>
+        <ButtonLoading
+          isLoading={isLoading}
+          className="w-full"
+          disabled={isSaving || isLoading}
+          onClick={() => {
+            handleUpdateCache()
+            isMobileVersion && toggleSettings()
+          }}
+        >
+          Update Cache
+        </ButtonLoading>
         <LinkButton asChild>
           <button
             className="mt-auto disabled:opacity-50 disabled:hover:text-gray-dark-600 disabled:cursor-not-allowed"
             onClick={handleLogout}
-            disabled={isLoadingLogout}
+            disabled={isLoading}
           >
             Logout
             <Logout className="size-4 sm:size-5" />
