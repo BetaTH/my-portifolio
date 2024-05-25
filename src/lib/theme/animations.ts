@@ -73,6 +73,20 @@ export const keyframes = {
       opacity: '1',
     },
   },
+  'dot-pattern-shimmer': {
+    '0%': {
+      'mask-position': '-25% 0%',
+      '-webkit-mask-position': '-25% 0%',
+    },
+    '50%': {
+      'mask-position': '125% 0%',
+      '-webkit-mask-position': '125% 0%',
+    },
+    '100%': {
+      'mask-position': '-25% 0%',
+      '-webkit-mask-position': '-25% 0%',
+    },
+  },
 }
 export const animation = {
   'slide-in-down': 'slide-in-down 0.3s ease-in-out',
@@ -83,4 +97,5 @@ export const animation = {
   'move-from-left': 'move-from-left 0.5s ease-out',
   'move-from-right': 'move-from-right 0.5s ease-out',
   opacity: 'opacity 0.5s ease-out',
+  'dot-pattern-shimmer': 'dot-pattern-shimmer 8s ease-out infinite 0s',
 }

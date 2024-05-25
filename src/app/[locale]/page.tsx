@@ -46,7 +46,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
         width={25}
         height={25}
         className={cn(
-          '-z-10 opacity-30',
+          '-z-10',
           '[mask-image:linear-gradient(to_right,transparent_0%,white_15%,white_85%,transparent_100%)]',
         )}
       />
@@ -157,10 +157,10 @@ export default async function Home({ params }: { params: { locale: string } }) {
           <SocialCard />
         </section>
         <AnimatedGridPattern
-          numSquares={100}
+          numSquares={30}
           maxOpacity={0.4}
-          duration={3}
-          repeatDelay={1}
+          duration={1.5}
+          repeatDelay={0.3}
           className={cn(
             'text-primary/80 -z-10 [mask-image:radial-gradient(700px_circle_at_center,transparent,transparent_20%,white)]',
             'inset-x-0 inset-y-[-50%] h-[200%] skew-y-12 ',
