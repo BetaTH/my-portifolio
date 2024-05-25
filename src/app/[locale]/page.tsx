@@ -164,6 +164,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
           className={cn(
             'text-primary/80 -z-10 [mask-image:radial-gradient(700px_circle_at_center,transparent,transparent_20%,white)]',
             'inset-x-0 inset-y-[-50%] h-[200%] skew-y-12 ',
+            'md:[mask-image:radial-gradient(400px_circle_at_center,transparent,transparent_20%,white)]',
           )}
         />
       </div>

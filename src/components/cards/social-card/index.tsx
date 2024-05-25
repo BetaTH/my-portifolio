@@ -9,7 +9,7 @@ interface SocialCardProps extends HTMLAttributes<HTMLDivElement> {}
 
 export function SocialCard({ className }: SocialCardProps) {
   return (
-    <div className={cn('flex gap-2 opacity-0', className)}>
+    <div className={cn('flex gap-2', className)}>
       <SocialButton icon={IconGitHub} href="https://github.com/BetaTH" />
       <SocialButton
         icon={IconLinkedIn}
