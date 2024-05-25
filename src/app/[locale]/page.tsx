@@ -53,11 +53,11 @@ export default async function Home({ params }: { params: { locale: string } }) {
       <Header />
       <div className="px-6">
         <div className="mx-auto w-[65rem] max-w-full">
-          <section className="py-12 flex justify-between items-center gap-9 md:flex-col-reverse">
+          <section className="py-12 flex justify-between items-center gap-9 md:flex-col-reverse overflow-hidden">
             <div className="w-[37rem] max-w-full flex flex-col gap-[2.125rem]">
               <h1 className="text-[2.125rem]/[2.25rem] font-semibold text-title animate-fade-in-left md:delay-200 fill-mode-forwards opacity-0">
                 {t('hero.title01')}{' '}
-                <span className="">{t('hero.title02')} </span>
+                <span className="text-primary">{t('hero.title02')} </span>
                 {t('hero.title03')}
                 <br />
                 <span className="text-primary">{t('hero.title04')}</span>
