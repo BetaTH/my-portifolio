@@ -3,7 +3,7 @@ export const colors = {
   white: '#FFFFFF',
   success: '#00B894',
   error: '#EF4444',
-  body: '#282C33',
+  body: '#212328',
   primary: '#C778DD',
   title: '#FFFFFF',
   'body-text': '#D1D5DB',

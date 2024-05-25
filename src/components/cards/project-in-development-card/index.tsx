@@ -15,7 +15,7 @@ export async function ProjectInDevelopmentCard({
 }: ProjectInDevelopmentCardProps) {
   const t = await getScopedI18n('pages.home.projects')
   return (
-    <div className="w-96 max-w-full h-40 border flex flex-shrink-0 flex-col border-gray-200 rounded-lg p-4">
+    <div className="w-96 max-w-full h-40 bg-body border flex flex-shrink-0 flex-col border-gray-200 rounded-lg p-4">
       <h4 className="text-xl/5 text-title ">{projectInDevelopment.title}</h4>
       <P className="mt-3 line-clamp-3">
         {projectInDevelopment.description[locale]}

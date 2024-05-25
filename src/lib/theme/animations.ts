@@ -19,8 +19,30 @@ export const keyframes = {
       opacity: '0',
     },
   },
+  'fade-in-left': {
+    '0%': {
+      opacity: '0',
+      transform: 'translateX(-2rem)',
+    },
+    '100%': {
+      opacity: '1',
+      transform: 'translateX(0)',
+    },
+  },
+  'fade-in-right': {
+    '0%': {
+      opacity: '0',
+      transform: 'translateX(2rem)',
+    },
+    '100%': {
+      opacity: '1',
+      transform: 'translateX(0)',
+    },
+  },
 }
 export const animation = {
   'slide-in-down': 'slide-in-down 0.3s ease-in-out',
   'slide-out-up': 'slide-out-up 0.3s ease-in-out',
+  'fade-in-left': 'fade-in-left 0.8s ease-out',
+  'fade-in-right': 'fade-in-right 0.8s ease-out',
 }

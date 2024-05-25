@@ -6,8 +6,6 @@ import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { P } from '@/components/layout/paragraph'
 import { Section } from '@/components/layout/section'
-import { AboutImage } from '@/components/svg-components/about-image'
-import { HeroImage } from '@/components/svg-components/hero-image'
 import { IconEmail } from '@/components/svg-components/icon-email'
 import { IconGit } from '@/components/svg-components/icon-git'
 import {
@@ -23,6 +21,10 @@ import Link from 'next/link'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { ProjectsCarousel } from '@/components/carousel/projects-carousel'
+import { AnimatedGridPattern } from '@/components/magicui/aniamted-grid-patern'
+import { cn } from '@/lib/utils/cn'
+import { DotPattern } from '@/components/magicui/dot-patern'
+import Image from 'next/image'
 
 export function generateStaticParams() {
   return getStaticParams()
@@ -36,23 +38,44 @@ export default async function Home({ params }: { params: { locale: string } }) {
 
   const data: PortfolioData = await res.json()
   return (
-    <main id={'home'} className="bg-body pt-[4.75rem] 2md:pt-[4.5rem]">
+    <main
+      id={'home'}
+      className="bg-body z-0 relative pt-[4.75rem] 2md:pt-[4.5rem]"
+    >
+      <DotPattern
+        width={25}
+        height={25}
+        className={cn(
+          '-z-10 opacity-30',
+          '[mask-image:linear-gradient(to_right,transparent_0%,white_15%,white_85%,transparent_100%)]',
+        )}
+      />
       <Header />
       <div className="px-6">
         <div className="mx-auto w-[65rem] max-w-full">
           <section className="py-12 flex justify-between items-center gap-9 md:flex-col-reverse">
             <div className="w-[37rem] max-w-full flex flex-col gap-[2.125rem]">
-              <h1 className="text-[2.125rem]/[2.25rem] font-semibold text-title">
+              <h1 className="text-[2.125rem]/[2.25rem] font-semibold text-title animate-fade-in-left md:delay-200 fill-mode-forwards opacity-0">
                 {t('hero.title01')}{' '}
-                <span className="text-primary">{t('hero.title02')} </span>
+                <span className="">{t('hero.title02')} </span>
                 {t('hero.title03')}
                 <br />
                 <span className="text-primary">{t('hero.title04')}</span>
               </h1>
-              <P>{t('hero.descripiton')}</P>
-              <SocialCard />
+              <P className="animate-fade-in-left delay-200 md:[animation-delay:400ms] fill-mode-forwards opacity-0">
+                {t('hero.descripiton')}
+              </P>
+              <SocialCard className="animate-fade-in-left [animation-delay:400ms] md:[animation-delay:600ms] fill-mode-forwards opacity-0" />
             </div>
-            <HeroImage className="w-[25.625rem] h-[18.625rem] sm:w-full" />
+            <Image
+              alt="Hero Image"
+              src="/hero-image.png"
+              height={298}
+              width={410}
+              sizes="100%"
+              priority={true}
+              className="w-[25.625rem] h-[18.625rem] sm:w-full md:animate-fade-in-left md:fill-mode-forwards sm:h-auto animate-fade-in-right delay-100 fill-mode-forwards opacity-0"
+            />
           </section>
           <Section id="skills" title="Skills">
             <div className="grid grid-cols-5 pt-5 gap-[3.125rem] 2sm:grid-cols-3 sm:!grid-cols-2 2md:grid-cols-4 w-fit mx-auto">
@@ -63,7 +86,16 @@ export default async function Home({ params }: { params: { locale: string } }) {
           </Section>
           <Section id="about" title={t('about.name')}>
             <div className="w-full flex gap-[3.75rem] items-center justify-center md:flex-col">
-              <AboutImage className="w-[25rem] h-[23.5625rem] sm:w-full" />
+              <Image
+                alt="About Image"
+                src="/about-image.png"
+                height={377}
+                width={400}
+                sizes="100%"
+                className="w-[25rem] h-[23.5625rem] sm:w-full sm:h-auto"
+                priority={true}
+              />
+              {/* <AboutImage className="w-[25rem] h-[23.5625rem] sm:w-full" /> */}
               <div className="flex max-w-full flex-col gap-3 w-[32.375rem]">
                 <P>{t('about.about01')}</P>
                 <P>{t('about.about02')}</P>
@@ -99,10 +131,10 @@ export default async function Home({ params }: { params: { locale: string } }) {
           </Section>
         </div>
       </div>
-      <div className="px-6 bg-gray-800">
+      <div className="px-6 z-0 bg-gray-800 relative overflow-hidden flex items-center justify-center">
         <section
           id="contact"
-          className="mx-auto w-[65rem] max-w-full py-20 flex items-center flex-col text-center"
+          className="mx-auto  w-[65rem] max-w-full py-20 flex items-center flex-col text-center"
         >
           <h2 className="text-[2rem]/[2.125rem] text-primary mb">
             {t('contact.text01')}
@@ -124,6 +156,16 @@ export default async function Home({ params }: { params: { locale: string } }) {
           </p>
           <SocialCard />
         </section>
+        <AnimatedGridPattern
+          numSquares={100}
+          maxOpacity={0.4}
+          duration={3}
+          repeatDelay={1}
+          className={cn(
+            'text-primary/80 -z-10 [mask-image:radial-gradient(700px_circle_at_center,transparent,transparent_20%,white)]',
+            'inset-x-0 inset-y-[-50%] h-[200%] skew-y-12 ',
+          )}
+        />
       </div>
       <Footer />
     </main>

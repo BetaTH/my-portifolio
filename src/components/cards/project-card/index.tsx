@@ -26,7 +26,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        'p-3 relative bg-gray-800/30 border-gray-200/50 transition-all duration-300 rounded-xl border flex gap-4 items-center h-[29.75rem] flex-col hover:border-primary',
+        'p-3 relative bg-gray-800/90 border-gray-200/50 transition-all duration-300 rounded-xl border flex gap-4 items-center h-[29.75rem] flex-col hover:border-primary',
         className,
       )}
       {...props}
