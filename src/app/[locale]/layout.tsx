@@ -4,6 +4,7 @@ import '../globals.css'
 import { getCurrentLocale, getScopedI18n } from '@/lib/locale/server'
 import { LocaleProvider } from '@/components/layout/locale-provider'
 import { Toaster } from 'react-hot-toast'
+import { ThemeProvider } from 'next-themes'
 const firaCode = FiraCode({ subsets: ['latin'] })
 const firaSans = FiraSans({
   weight: ['400', '500', '600', '700'],
@@ -48,10 +49,12 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${firaCode.className} ${firaSans.variable} relative`}>
-        <LocaleProvider locale={locale}>
-          {children}
-          <Toaster />
-        </LocaleProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <LocaleProvider locale={locale}>
+            {children}
+            <Toaster />
+          </LocaleProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

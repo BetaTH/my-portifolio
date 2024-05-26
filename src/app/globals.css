@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+
 
 @layer base {
   body {
@@ -14,6 +10,43 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  :root {
+    --color-black: 255 255 255; 
+    --color-white: 0 0 0;
+    --color-body: 249 250 251;
+    --color-title: 0 0 0;
+    --color-gray-200: 229 231 235; 
+
+  }
+  
+  :root[class="light"] {
+    --color-black: 255 255 255; /* white */ 
+    --color-white: 0 0 0; /* black */ 
+    --color-body: 249 250 251; /* gray-50 */ 
+    --color-title: 0 0 0; /* black */ 
+    --color-gray-200: 229 231 235; /* gray-800 */ 
+  }
+
+  :root[class="dark"] {
+    --color-black: 0 0 0;
+    --color-white: 255 255 255;
+    --color-body:  33 35 40;
+    --color-title: 255 255 255;
+    --color-gray-200: 229 231 235;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-black: 0 0 0;
+      --color-white: 255 255 255;
+      --color-body:  33 35 40;
+      --color-title: 255 255 255;
+      --color-gray-200: 229 231 235;
+    }
+  }
+
+
+
   /* html {
     scroll-behavior: smooth;
     
@@ -37,23 +70,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
 @layer utilities {
   .text-balance {

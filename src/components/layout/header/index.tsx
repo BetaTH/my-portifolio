@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Overlay } from '../overlay'
 import { Logo } from '@/components/svg-components/logo-image'
+import { SwitchTheme } from '@/components/buttons/switch-theme-button'
 
 const navigation: ['skills', 'about', 'projects', 'contact'] = [
   'skills',
@@ -102,14 +103,17 @@ function Nav({ isAdmin, isMobileVersion }: NavProps) {
         {!isAdmin && (
           <>
             <div className="h-6 border border-gray-600 2md:h-0 2md:w-[75%]" />
-            <div className="flex gap-6">
-              <LangButton />
-              <Button asChild>
-                <Link href={t('resumeLink')} target="_blanck">
-                  {t('resume')}
-                  <IconDownload className="size-4 2md:size-5" />
-                </Link>
-              </Button>
+            <div className="flex gap-6 2md:flex-col-reverse items-center">
+              <SwitchTheme />
+              <div className="flex gap-6">
+                <LangButton />
+                <Button asChild>
+                  <Link href={t('resumeLink')} target="_blanck">
+                    {t('resume')}
+                    <IconDownload className="size-4 2md:size-5" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </>
         )}
