@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<div align='center'>
+	<h1>Find a friend Api</h1>
+	<img src='https://img.shields.io/github/languages/top/BetaTH/picpay-challenge' alt='Linguagem mais utilizada' />
+	<img src='https://img.shields.io/github/last-commit/BetaTH/picpay-challenge' alt='Último commit' />
+</div>
 
-First, run the development server:
+<!-- <div align='center'>
+	<img src='.github/' alt='Preview' />
+</div> -->
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<h4 align="center"> 
+	🚧  🚀 Em construção...  🚧
+</h4>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Introdução
+Esse é um projeto feito com muita dedicação e amor. Aqui você poderá encontrar mais detalhes sobre o projeto e poderá explorar o código-fonte usado para construir meu portfólio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 👨‍💻 Tecnologias
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Javascript/Typescript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript): Linguagem de programção principal.
+- [NodeJS](https://nodejs.org/en): Plataforma para executar JavaScript no backend.
+- [NextJS](https://nextjs.org/): Framework React para web .
+- [TailwindCSS](https://tailwindcss.com/): CSS framework que prioriza a utilidade.
+- [Framer Motion](https://www.framer.com/motion/): Biblioteca de animações para React.
+- [React Slick](https://react-slick.neostack.com/): Biblioteca para criação de carrosel no React.
+- [Cloudflare R2 - Bucket](https://developers.cloudflare.com/r2/): Armazenamento de objetos rápido e confiável.
 
-## Learn More
+<!-- Patterns Highlights -->
+## 🔄 Backend e Autenticação
 
-To learn more about Next.js, take a look at the following resources:
+O principal destaque desse projeto é o fluxo de backend criado inteiramente com o NextJS, com o objetivo de facilitar o update de projetos, evitando a relização de commits sempre que houver necessidade de adicionar, editar, ou excluir os projetos em que eu tenho trabalhado e desejo exibir no meu portfolio. Esse fluxo contem, autenticação e validação de rotas e endpoints privados, afim de proteger meus dados. Fique a vontade para explorar o código-fonte para verificar a implementação.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Fluxo de Autenticação
+<div align='left'>
+	<img src='.github/auth-flow.png' alt='Auth Flow' />
+</div>
+<!-- Patterns Highlights -->
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## 🎯 Principais Recursos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [x] Pagina de admin para editar e adicionar novos projetos
+- [x] Fluxo de autenticação para acessar a pagina de admin e editar projetos
+- [x] Internacinalização
+- [x] Switch entre tema claro e escuro
+- [x] Acesso ai direto ao meu currículo (resumo)
+- [x] Carrosel com a biblitoteca react slick
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🔧 Rodando o Projeto
+
+Para rodar essa aplicação, é necessário ter instalado o [NodeJS](https://nodejs.org/en). Além disso vai precisar ter um conta no Cloudflare R2, configurar uma bucket e um arquivo json e as chaves de acesso ao bucket. No arquivo *.env.example* você poderá encontrar quais as variaveis de ambiente você vai precisar configurar pra rodar o projeto 
+
+- Execute o comando `pnpm install` para baixar as dependências. Você pode usar o gerenciador de pacotes que preferir.
+- Execute o comando `pnpm dev` para rodar a aplicação em modo de desenvolvimento.
+
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Acesse o link [LICENSE](https://mit-license.org/) para mais detalhes.
+
+## 🌐 GitHub
+
+O código-fonte da aplicação pode ser encontrado no GitHub: [Project Link](https://github.com/BetaTH?tab=repositories)
+
+## 📧 Contact
+
+Em caso de dúvidas ou sugestões, entre em contato conosco através do email: [thielson12@gmail.com](mailto:thielson12@gmail.com).
