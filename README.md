@@ -27,7 +27,7 @@ Esse é um projeto feito com muita dedicação e amor. Aqui você poderá encont
 <!-- Patterns Highlights -->
 ## 🔄 Backend e Autenticação
 
-O principal destaque desse projeto é o fluxo de backend criado inteiramente com o NextJS, com o objetivo de facilitar o update de projetos, usando o monaco editor para editar o arquivo JSON que server como base de dados, evitando, assim, a relização de commits sempre que houver necessidade de adicionar, editar, ou excluir os projetos em que eu tenho trabalhado e desejo exibir no meu portfolio. Esse fluxo contem, autenticação e validação de rotas e endpoints privados, afim de proteger meus dados. Fique a vontade para explorar o código-fonte para verificar a implementação.
+O principal destaque desse projeto é o fluxo de backend criado inteiramente com o NextJS, com o objetivo de facilitar o update de projetos, usando o monaco editor para editar um arquivo JSON, hospedado no bucket R2 da cloudflare, que server como base de dados, evitando, assim, a relização de commits sempre que houver necessidade de adicionar, editar, ou excluir os projetos em que eu tenho trabalhado e desejo exibir no meu portfolio. Esse fluxo contem, autenticação e validação de rotas e endpoints privados, afim de proteger meus dados. Fique a vontade para explorar o código-fonte para verificar a implementação.
 
 ## 📝 Fluxo de Autenticação
 <div align='left'>
