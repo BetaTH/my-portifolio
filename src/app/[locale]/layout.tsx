@@ -47,14 +47,14 @@ export default function RootLayout({
 }>) {
   const locale = getCurrentLocale()
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${firaCode.className} ${firaSans.variable} relative`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <LocaleProvider locale={locale}>
+        <LocaleProvider locale={locale}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
             <Toaster />
-          </LocaleProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </LocaleProvider>
       </body>
     </html>
   )
