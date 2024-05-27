@@ -8,11 +8,9 @@ import { LinkButton } from '../buttons/link-button'
 import { Logout } from '../svg-components/logout'
 import { X } from '../svg-components/x'
 import { EditorContentContext } from '@/contexts/editor-content-context'
-import { UpdatePortfolioDataContext } from '@/contexts/update-portfolio-data-context'
-import { useRouter } from 'next/navigation'
+import { PortfolioDataContext } from '@/contexts/portfolio-data-context'
 import { ButtonLoading } from '../buttons/button-loading'
-import toast from 'react-hot-toast'
-import { CustomToast } from '../layout/toast'
+import { useAuth } from '@/lib/hooks/useAuth'
 
 interface EditorSettingsProps {
   isMobileVersion?: boolean
@@ -21,43 +19,15 @@ interface EditorSettingsProps {
 export function EditorSettings({
   isMobileVersion = false,
 }: EditorSettingsProps) {
-  const { handleFormatDocument } = useContext(EditorContentContext)
-  const { isSaving, handleSaveData } = useContext(UpdatePortfolioDataContext)
-  const router = useRouter()
-
   const [isActive, setIsActive] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+
+  const { handleFormatDocument } = useContext(EditorContentContext)
+  const { isLoading, handleSaveData, handleUpdateCache } =
+    useContext(PortfolioDataContext)
+  const { handleLogout } = useAuth()
 
   function toggleSettings() {
     setIsActive((prev) => !prev)
-  }
-
-  async function handleLogout() {
-    const res = await fetch('/api/auth/logout')
-    if (res.ok && res.status === 200) {
-      router.push('/admin')
-    }
-  }
-
-  async function handleUpdateCache() {
-    setIsLoading(true)
-    const res = await fetch('/api/portfolio')
-    if (!res.ok && res.status === 401) {
-      router.push('/admin')
-    }
-    if (res.ok && res.status === 200) {
-      toast.custom((t) => {
-        return (
-          <CustomToast
-            title="Success"
-            message="Cache updated"
-            feedback="success"
-            isVisible={t.visible}
-          />
-        )
-      })
-    }
-    setIsLoading(false)
   }
 
   return (
@@ -86,9 +56,9 @@ export function EditorSettings({
           Settings
         </p>
         <ButtonLoading
-          isLoading={isSaving}
+          isLoading={isLoading}
           className="w-full"
-          disabled={isSaving}
+          disabled={isLoading}
           onClick={() => {
             handleSaveData()
             isMobileVersion && toggleSettings()
@@ -98,7 +68,7 @@ export function EditorSettings({
         </ButtonLoading>
         <Button
           className="w-full"
-          disabled={isSaving}
+          disabled={isLoading}
           onClick={() => {
             handleFormatDocument()
             isMobileVersion && toggleSettings()
@@ -109,7 +79,7 @@ export function EditorSettings({
         <ButtonLoading
           isLoading={isLoading}
           className="w-full"
-          disabled={isSaving || isLoading}
+          disabled={isLoading}
           onClick={() => {
             handleUpdateCache()
             isMobileVersion && toggleSettings()

@@ -1,5 +1,5 @@
 import { EditorContentContextProvider } from '@/contexts/editor-content-context'
-import { UpdatePortfolioDataContextProvider } from '@/contexts/update-portfolio-data-context'
+import { PortfolioDataContextProvider } from '@/contexts/portfolio-data-context'
 
 export default function EditorLayout({
   children,
@@ -7,8 +7,8 @@ export default function EditorLayout({
   children: React.ReactNode
 }) {
   return (
-    <UpdatePortfolioDataContextProvider>
+    <PortfolioDataContextProvider>
       <EditorContentContextProvider>{children}</EditorContentContextProvider>
-    </UpdatePortfolioDataContextProvider>
+    </PortfolioDataContextProvider>
   )
 }

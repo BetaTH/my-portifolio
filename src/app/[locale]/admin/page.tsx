@@ -1,68 +1,19 @@
 'use client'
 import { ButtonLoading } from '@/components/buttons/button-loading'
 import { Input } from '@/components/input'
-import { CustomToast } from '@/components/layout/toast'
-import { loginSchema } from '@/lib/schemas/login-schema'
-import { useRouter } from 'next/navigation'
+import { useAuth } from '@/lib/hooks/useAuth'
 import { ChangeEvent, useState } from 'react'
-import toast from 'react-hot-toast'
-import { z } from 'zod'
 
 export default function Login() {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
   const [inputData, setInputData] = useState({
     username: '',
     password: '',
   })
+  const { handleLogin, isLoading } = useAuth()
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target
     setInputData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  async function handleSubmit() {
-    setIsLoading(true)
-    let loginDataParsed: z.infer<typeof loginSchema>
-
-    try {
-      loginDataParsed = loginSchema.parse(inputData)
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginDataParsed),
-      })
-      const response = await res.json()
-      if (res.ok && res.status === 200) {
-        router.push('/admin/editor')
-      } else {
-        toast.custom((t) => {
-          return (
-            <CustomToast
-              title={`Error`}
-              message={response.message}
-              feedback="error"
-              isVisible={t.visible}
-            />
-          )
-        })
-      }
-    } catch {
-      toast.custom((t) => {
-        return (
-          <CustomToast
-            title="Error"
-            message="Data validation error"
-            feedback="error"
-            isVisible={t.visible}
-          />
-        )
-      })
-    } finally {
-      setIsLoading(false)
-    }
   }
 
   return (
@@ -70,7 +21,7 @@ export default function Login() {
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          handleSubmit()
+          handleLogin(inputData)
         }}
         className="m-auto dark:bg-gray-800/80 bg-gray-200 border-gray-700/50 dark:border-gray-200/10 shadow-xl border rounded-xl py-10 px-6 "
       >

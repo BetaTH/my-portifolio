@@ -8,14 +8,14 @@ import { Overlay } from '../layout/overlay'
 import { useMediaQuery } from '@/lib/hooks/useMediaQuery'
 import { Loading } from '../svg-components/loading'
 import { EditorContentContext } from '@/contexts/editor-content-context'
-import { UpdatePortfolioDataContext } from '@/contexts/update-portfolio-data-context'
+import { PortfolioDataContext } from '@/contexts/portfolio-data-context'
 
 export default function CustomEditor({ data }: { data: PortfolioData }) {
   const { handleEditorDidMount, isEditorReady } =
     useContext(EditorContentContext)
-  const { setPortfolioDataString, portfolioDataString } = useContext(
-    UpdatePortfolioDataContext,
-  )
+
+  const { setPortfolioDataString, portfolioDataString } =
+    useContext(PortfolioDataContext)
 
   useEffect(() => {
     setPortfolioDataString(JSON.stringify(data, null, 2))
