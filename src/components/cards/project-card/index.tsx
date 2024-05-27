@@ -38,9 +38,11 @@ export function ProjectCard({
         <Image
           alt={`${project.title} ${t('project-image-alt')}`}
           src={project.img}
-          fill
-          className="object-cover z-0"
+          height={303}
+          width={213}
+          priority={true}
           sizes="100%"
+          className="object-cover z-0 h-[12rem] w-full"
         />
       </div>
       <div className="flex flex-col h-full w-full gap-5 sm:gap-[0.875rem]">

@@ -24,14 +24,14 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       images: {
-        url: 'http://drive.google.com/uc?export=view&id=1WeuosMCQQHRx1JibLEZSlfmyJ-5JBe7m',
+        url: 'https://utfs.io/f/f0191fec-d631-4ca7-be0c-92d1a9447197-awlwp.png',
       },
     },
     openGraph: {
       title,
       description,
       images: {
-        url: 'http://drive.google.com/uc?export=view&id=1WeuosMCQQHRx1JibLEZSlfmyJ-5JBe7m',
+        url: 'https://utfs.io/f/f0191fec-d631-4ca7-be0c-92d1a9447197-awlwp.png',
       },
     },
     icons: {
