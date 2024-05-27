@@ -33,30 +33,9 @@ export function SwitchTheme({ className }: SwitchThemeProps) {
       }
     >
       <div className="w-full flex items-center z-0 justify-center relative">
-        <IconSun
-          className={cn(
-            'size-4 2md:size-6 m-1 2md:m-2 dark:text-gray-600 text-violet-500',
-            {
-              // 'text-gray-200 dark:text-gray-600': !mounted,
-            },
-          )}
-        />
-        <IconMoon
-          className={cn(
-            'size-4 2md:size-6 m-1 2md:m-2 text-gray-200 dark:text-violet-500',
-            {
-              // 'text-gray-200 dark:text-gray-600': !mounted,
-            },
-          )}
-        />
-        <div
-          className={cn(
-            'size-6 2md:size-10 -z-10 bg-title dark:bg-body left-0 rounded-full absolute transition-transform duration-300 dark:translate-x-full',
-            // {
-            //   block: mounted,
-            // },
-          )}
-        />
+        <IconSun className="size-4 2md:size-6 m-1 2md:m-2 dark:text-gray-600 text-violet-500" />
+        <IconMoon className="size-4 2md:size-6 m-1 2md:m-2 text-gray-200 dark:text-violet-500" />
+        <div className="size-6 2md:size-10 -z-10 bg-title dark:bg-body left-0 rounded-full absolute transition-transform duration-300 dark:translate-x-full" />
       </div>
     </button>
   )

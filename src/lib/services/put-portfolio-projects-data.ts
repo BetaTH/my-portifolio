@@ -13,7 +13,6 @@ export async function PutPortfolioProjectsData({
 }: GetPortfolioProjectsDataProps) {
   const DataFileName = envFileName || 'portfolio-data.json'
 
-  console.log()
   await api(`portfolio-data/${DataFileName}`, {
     method: 'PUT',
     headers: {

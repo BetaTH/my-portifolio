@@ -26,7 +26,7 @@ export async function verifyToken(token: string | undefined = '') {
     })
     return payload as SessionPayload
   } catch (error) {
-    console.log('Failed to verify session')
+    // console.log('Failed to verify session')
     return undefined
   }
 }

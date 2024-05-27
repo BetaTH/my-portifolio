@@ -1,5 +1,3 @@
-'use client'
-
 import { CustomToast } from '@/components/layout/toast'
 import toast from 'react-hot-toast'
 
