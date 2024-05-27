@@ -17,7 +17,10 @@ export function ButtonLoading({
     <Button
       className={cn(
         '',
-        { '*:invisible text-transparent': isLoading },
+        {
+          '*:invisible *:dark:invisible dark:text-transparent text-transparent':
+            isLoading,
+        },
         className,
       )}
       {...props}
