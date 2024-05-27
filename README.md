@@ -4,14 +4,10 @@
 	<img src='https://img.shields.io/github/languages/top/BetaTH/picpay-challenge' alt='Linguagem mais utilizada' />
 	<img src='https://img.shields.io/github/last-commit/BetaTH/picpay-challenge' alt='Último commit' />
 </div>
-
-<!-- <div align='center'>
-	<img src='.github/' alt='Preview' />
-</div> -->
-
-<h4 align="center"> 
-	🚧  🚀 Em construção...  🚧
-</h4>
+<br>
+<div align='center'>
+	<img src='.github/my-portfolio-preview.png' alt='Project Preview' />
+</div>
 
 ## 🚀 Introdução
 Esse é um projeto feito com muita dedicação e amor. Aqui você poderá encontrar mais detalhes sobre o projeto e poderá explorar o código-fonte usado para construir meu portfólio.
@@ -25,11 +21,13 @@ Esse é um projeto feito com muita dedicação e amor. Aqui você poderá encont
 - [Framer Motion](https://www.framer.com/motion/): Biblioteca de animações para React.
 - [React Slick](https://react-slick.neostack.com/): Biblioteca para criação de carrosel no React.
 - [Cloudflare R2 - Bucket](https://developers.cloudflare.com/r2/): Armazenamento de objetos rápido e confiável.
+- [Monaco Editor](https://microsoft.github.io/monaco-editor/): Editor de código que é a base do VS Code.
+- [Monaco Editor - React](https://www.npmjs.com/package/@monaco-editor/react): Wrapper do Monaco Editor para integração fácil com qualquer aplicativo React.
 
 <!-- Patterns Highlights -->
 ## 🔄 Backend e Autenticação
 
-O principal destaque desse projeto é o fluxo de backend criado inteiramente com o NextJS, com o objetivo de facilitar o update de projetos, evitando a relização de commits sempre que houver necessidade de adicionar, editar, ou excluir os projetos em que eu tenho trabalhado e desejo exibir no meu portfolio. Esse fluxo contem, autenticação e validação de rotas e endpoints privados, afim de proteger meus dados. Fique a vontade para explorar o código-fonte para verificar a implementação.
+O principal destaque desse projeto é o fluxo de backend criado inteiramente com o NextJS, com o objetivo de facilitar o update de projetos, usando o monaco editor para editar o arquivo JSON que server como base de dados, evitando, assim, a relização de commits sempre que houver necessidade de adicionar, editar, ou excluir os projetos em que eu tenho trabalhado e desejo exibir no meu portfolio. Esse fluxo contem, autenticação e validação de rotas e endpoints privados, afim de proteger meus dados. Fique a vontade para explorar o código-fonte para verificar a implementação.
 
 ## 📝 Fluxo de Autenticação
 <div align='left'>
