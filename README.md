@@ -1,6 +1,6 @@
 
 <div align='center'>
-	<h1>Find a friend Api</h1>
+	<h1>Meu Portfolio</h1>
 	<img src='https://img.shields.io/github/languages/top/BetaTH/picpay-challenge' alt='Linguagem mais utilizada' />
 	<img src='https://img.shields.io/github/last-commit/BetaTH/picpay-challenge' alt='Último commit' />
 </div>
