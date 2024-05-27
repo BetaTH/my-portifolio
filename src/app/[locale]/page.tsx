@@ -95,7 +95,6 @@ export default async function Home({ params }: { params: { locale: string } }) {
                 className="w-[25rem] h-[23.5625rem] sm:w-full sm:h-auto"
                 priority={true}
               />
-              {/* <AboutImage className="w-[25rem] h-[23.5625rem] sm:w-full" /> */}
               <div className="flex max-w-full flex-col gap-3 w-[32.375rem]">
                 <P>{t('about.about01')}</P>
                 <P>{t('about.about02')}</P>

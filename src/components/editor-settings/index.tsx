@@ -90,7 +90,7 @@ export function EditorSettings({
         </ButtonLoading>
         <LinkButton asChild>
           <button
-            className="mt-auto disabled:opacity-50 disabled:hover:text-gray-dark-600 disabled:cursor-not-allowed"
+            className="mt-auto disabled:opacity-50 disabled:hover:text-body-text disabled:cursor-not-allowed"
             onClick={handleLogout}
             disabled={isLoading}
           >
