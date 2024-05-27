@@ -1,9 +1,17 @@
 'use client'
 
-import { createContext, ReactNode, useCallback, useRef, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { EditorProps, Monaco, OnMount } from '@monaco-editor/react'
 import { editor } from 'monaco-editor'
 import monacoDacrulaTheme from '@/assets/monaco-theme/dracula.json'
+import { useTheme } from 'next-themes'
 
 interface EditorContextProviderProps {
   children: ReactNode
@@ -24,17 +32,27 @@ export function EditorContentContextProvider({
 }: EditorContextProviderProps) {
   const monacoRef = useRef<Monaco>()
   const editorRef = useRef<editor.IStandaloneCodeEditor>()
+  const [mounted, setMounted] = useState(false)
   const [isEditorReady, setIsEditorReady] = useState(false)
+  const { resolvedTheme } = useTheme()
+
+  useEffect(() => {
+    if (mounted) {
+      resolvedTheme === 'dark' &&
+        monacoRef.current?.editor.setTheme('dracula-theme')
+      resolvedTheme === 'light' && monacoRef.current?.editor.setTheme('vs')
+      setIsEditorReady(true)
+    }
+  }, [resolvedTheme, mounted])
 
   const handleEditorDidMount = useCallback<OnMount>((editor, monaco) => {
     monaco.editor.defineTheme(
-      'custom-theme',
+      'dracula-theme',
       monacoDacrulaTheme as editor.IStandaloneThemeData,
     )
-    monaco.editor.setTheme('custom-theme')
     monacoRef.current = monaco
     editorRef.current = editor
-    setIsEditorReady(true)
+    setMounted(true)
   }, [])
 
   function handleFormatDocument() {

@@ -10,9 +10,9 @@ export default async function EditorPage() {
   return (
     <main
       id={'home'}
-      className="bg-body pt-[4.75rem] h-screen 2md:pt-[4.5rem] sm:h-svh"
+      className="dark:bg-body bg-gray-50 pt-[4.75rem] h-screen 2md:pt-[4.5rem] sm:h-svh"
     >
-      <Header isAdmin />
+      <Header />
       <CustomEditor data={data} />
     </main>
   )

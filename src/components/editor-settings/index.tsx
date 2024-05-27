@@ -27,28 +27,24 @@ export function EditorSettings({
 
   const [isActive, setIsActive] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
   function toggleSettings() {
     setIsActive((prev) => !prev)
   }
 
   async function handleLogout() {
-    setIsLoading(true)
     const res = await fetch('/api/auth/logout')
-
     if (res.ok && res.status === 200) {
       router.push('/admin')
     }
-    setIsLoading(false)
   }
 
   async function handleUpdateCache() {
     setIsLoading(true)
     const res = await fetch('/api/portfolio')
-
     if (!res.ok && res.status === 401) {
       router.push('/admin')
     }
-
     if (res.ok && res.status === 200) {
       toast.custom((t) => {
         return (
@@ -73,7 +69,7 @@ export function EditorSettings({
       />
       <div
         className={cn(
-          'bg-body border-gray-200/50 gap-6 flex right-0 top-0 h-full flex-col items-center py-10 px-5 border-l w-60',
+          'dark:bg-body bg-gray-50 border-gray-200/50 gap-6 flex right-0 top-0 h-full flex-col items-center py-10 px-5 border-l w-60',
           {
             'absolute sm:hidden': !isMobileVersion,
             'hidden sm:flex fixed translate-y-0 visible transition-all duration-300 w-full z-[210] h-[50%] top-auto bottom-0 rounded-t-3xl border px-10 pt-14':

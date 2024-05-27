@@ -23,16 +23,18 @@ export function Input({
 
   return (
     <div className={`flex flex-col gap-1 ${full ? 'w-full' : 'w-fit'}`}>
-      <label className="text-body-text text-lg/5">{label}</label>
+      <label className="dark:text-body-text text-gray-700 text-lg/5">
+        {label}
+      </label>
       <div
         className={
-          'flex w-full border-gray-200/50 focus-within:border-primary bg-gray-600 overflow-hidden sm:rounded-lg rounded-xl border-2 transition-all duration-300'
+          'flex w-full border-gray-200/50 focus-within:border-primary bg-white dark:bg-gray-600 overflow-hidden sm:rounded-lg rounded-xl border transition-all duration-300'
         }
       >
         <input
           type={isPasswordVisible ? 'text' : type}
           className={cn(
-            'outline-none py-2 px-2 text-gray-100 text-base w-full bg-transparent',
+            'outline-none py-2 px-2 text-gray-600 dark:text-gray-100 text-base w-full bg-transparent',
           )}
           {...props}
         />

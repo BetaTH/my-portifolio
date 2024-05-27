@@ -19,7 +19,7 @@ const navigation: ['skills', 'about', 'projects', 'contact'] = [
   'contact',
 ]
 
-export function Header({ isAdmin = false }: { isAdmin?: boolean }) {
+export function Header() {
   const [isActive, setIsActive] = useState(false)
   const toggleMenu = () => {
     if (window.innerWidth < 859) {
@@ -51,10 +51,9 @@ export function Header({ isAdmin = false }: { isAdmin?: boolean }) {
               </Link>
               <MenuButton isActive={isActive} toggleMenu={toggleMenu} />
             </div>
-            <Nav isAdmin={isAdmin} />
+            <Nav />
             {/* With Hamburger Menu - Responsive */}
             <Nav
-              isAdmin={isAdmin}
               isMobileVersion={{
                 isActive,
                 toggleMenu,
@@ -67,19 +66,18 @@ export function Header({ isAdmin = false }: { isAdmin?: boolean }) {
   )
 }
 interface NavProps {
-  isAdmin: boolean
   isMobileVersion?: {
     isActive: boolean
     toggleMenu: () => void
   }
 }
 
-function Nav({ isAdmin, isMobileVersion }: NavProps) {
+function Nav({ isMobileVersion }: NavProps) {
   const t = useScopedI18n('header')
   return (
     <div
       className={cn('2md:hidden', {
-        'transition-all translate-x-0 hidden 2md:block fixed 2md:visible duration-300 h-full top-0 right-0 w-[17.0625rem] bg-body -z-10':
+        'transition-all translate-x-0 hidden 2md:block fixed 2md:visible duration-300 h-full top-0 right-0 w-[17.0625rem] dark:bg-body bg-gray-50 -z-10':
           isMobileVersion,
         'translate-x-full invisible':
           isMobileVersion && !isMobileVersion.isActive,
@@ -100,23 +98,20 @@ function Nav({ isAdmin, isMobileVersion }: NavProps) {
             </li>
           ))}
         </ul>
-        {!isAdmin && (
-          <>
-            <div className="h-6 border border-gray-600 2md:h-0 2md:w-[75%]" />
-            <div className="flex gap-6 2md:flex-col-reverse items-center">
-              <SwitchTheme />
-              <div className="flex gap-6">
-                <LangButton />
-                <Button asChild>
-                  <Link href={t('resumeLink')} target="_blanck">
-                    {t('resume')}
-                    <IconDownload className="size-4 2md:size-5" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </>
-        )}
+
+        <div className="h-6 border border-gray-600 2md:h-0 2md:w-[75%]" />
+        <div className="flex gap-6 2md:flex-col-reverse items-center">
+          <SwitchTheme />
+          <div className="flex gap-6">
+            <LangButton />
+            <Button asChild>
+              <Link href={t('resumeLink')} target="_blanck">
+                {t('resume')}
+                <IconDownload className="size-4 2md:size-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
       </nav>
     </div>
   )

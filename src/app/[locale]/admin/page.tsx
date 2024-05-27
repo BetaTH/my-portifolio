@@ -66,16 +66,18 @@ export default function Login() {
   }
 
   return (
-    <main className="bg-body flex h-screen sm:h-svh px-6">
+    <main className="dark:bg-body bg-gray-50 flex h-screen sm:h-svh px-6">
       <form
         onSubmit={(e) => {
           e.preventDefault()
           handleSubmit()
         }}
-        className="m-auto bg-gray-800/80 border-gray-200/10 shadow-xl border rounded-xl py-10 px-6 "
+        className="m-auto dark:bg-gray-800/80 bg-gray-200 border-gray-700/50 dark:border-gray-200/10 shadow-xl border rounded-xl py-10 px-6 "
       >
         <div className="flex flex-col gap-6 max-w-[20rem] m-auto">
-          <h1 className="mb-4 text-3xl/8">Access your account!</h1>
+          <h1 className="mb-4 text-3xl/8 dark:text-title text-body">
+            Access your account!
+          </h1>
           <Input
             type="text"
             name="username"

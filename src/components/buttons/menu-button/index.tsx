@@ -13,11 +13,11 @@ export function MenuButton({ isActive, toggleMenu }: MenuButtonProps) {
   return (
     <button
       onClick={toggleMenu}
-      className="relative size-8 hidden justify-center items-center 2md:flex 2md:flex-col "
+      className="relative size-8 hidden justify-center items-center 2md:flex 2md:flex-col"
     >
       <MenuIcon
         className={cn(
-          'text-gray-50 transition-all absolute opacity-1 size-full',
+          'dark:text-gray-50 text-body transition-all absolute opacity-1 size-full',
           { 'opacity-0 rotate-45': isActive },
         )}
       />

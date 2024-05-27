@@ -24,9 +24,12 @@ export function ButtonLoading({
     >
       {children}
       <Loading
-        className={cn('absolute size-6 invisible text-gray-700', {
-          '!visible': isLoading,
-        })}
+        className={cn(
+          'absolute size-6 invisible text-gray-50 dark:text-gray-700',
+          {
+            '!visible': isLoading,
+          },
+        )}
       />
     </Button>
   )
