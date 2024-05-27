@@ -12,12 +12,13 @@ const I18nMiddleware = createI18nMiddleware({
   },
 })
 
-const publicRoutes = ['/admin', '/']
+// const publicRoutes = ['/admin', '/']
+const privateRoutes = ['/admin/editor']
 
 export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname
-  const isProtectedRoute = !publicRoutes.includes(path)
-  const isPublicRoute = publicRoutes.includes(path)
+  const isProtectedRoute = privateRoutes.includes(path)
+  // const isPublicRoute = publicRoutes.includes(path)
 
   const session = await getSession()
 
@@ -25,11 +26,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/admin', req.nextUrl))
   }
 
-  if (
-    isPublicRoute &&
-    session.hasSession &&
-    req.nextUrl.pathname === '/admin'
-  ) {
+  if (session.hasSession && req.nextUrl.pathname === '/admin') {
     return NextResponse.redirect(new URL('/admin/editor', req.nextUrl))
   }
 
