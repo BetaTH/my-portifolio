@@ -60,6 +60,7 @@ export function EditorSettings({
           className="w-full"
           disabled={isLoading}
           onClick={() => {
+            handleFormatDocument()
             handleSaveData()
             isMobileVersion && toggleSettings()
           }}
