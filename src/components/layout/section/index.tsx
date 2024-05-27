@@ -19,9 +19,11 @@ export function Section({ id, title, children, className }: SectionProps) {
         <div className="w-full overflow-hidden">
           <div className="w-full h-[1.5px] rounded-full bg-primary animate-move-from-left delay-200 fill-mode-forwards translate-x-full" />
         </div>
-        <h2 className="text-title text-[2rem]/[2.125rem] flex-shrink-0 font-medium animate-opacity delay-200 fill-mode-forwards opacity-0">
-          {title}
-        </h2>
+        <div className="animate-opacity delay-200 fill-mode-forwards opacity-0 flex-shrink-0">
+          <h2 className="dark:text-title text-body text-[2rem]/[2.125rem] font-medium duration-300">
+            {title}
+          </h2>
+        </div>
         <div className="w-full overflow-hidden">
           <div className="w-full h-[1.5px] rounded-full bg-primary animate-move-from-right delay-200 fill-mode-forwards -translate-x-full" />
         </div>

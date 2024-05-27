@@ -80,7 +80,7 @@ export function ProjectsCarousel({
               onClick={() => carouselRef.current?.slickGoTo(idx)}
               data-active={idx === currentSlide}
               className={cn(
-                'w-3 h-3 p-0 rounded-full data-[active=true]:w-8 sm:data-[active=true]:w-6 data-[active=true]:bg-primary',
+                'w-3 h-3 p-0 rounded-full data-[active=true]:w-8 sm:data-[active=true]:w-6 data-[active=true]:bg-primary dark:data-[active=true]:bg-primary',
               )}
             />
           )

@@ -40,14 +40,14 @@ export function Header({ isAdmin = false }: { isAdmin?: boolean }) {
         className="2md:block z-[50]"
       />
       <header className="z-[100] fixed top-0 left-0 w-full">
-        <div className="items-center flex px-6 w-full bg-body border-b border-zinc-50/20">
+        <div className="items-center flex px-6 w-full dark:bg-body bg-gray-50 dark:border-zinc-50/20 border-b border-body/20">
           <div className="mx-auto w-[65rem] min-h-[4.75rem] 2md:min-h-[4.5rem] py-3 max-w-full flex justify-between items-center gap-6 2md:gap-0 2md:flex-col 2md:justify-center">
-            <div className="flex w-fit 2md:w-full justify-between items-center">
+            <div className="flex w-fit 2md:w-full justify-between items-center ">
               <Link
                 href={'/#home'}
                 onClick={() => isActive && setIsActive(false)}
               >
-                <Logo className="w-[5.5rem] h-9 text-gray-50 hover:text-primary transition-colors" />
+                <Logo className="w-[5.5rem] h-9 dark:text-gray-50 text-body hover:text-primary dark:hover:text-primary transition-colors" />
               </Link>
               <MenuButton isActive={isActive} toggleMenu={toggleMenu} />
             </div>

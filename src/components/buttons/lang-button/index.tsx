@@ -18,7 +18,7 @@ export function LangButton() {
         onMouseEnter={() => !isOpen && setIsOpen(true)}
         onMouseLeave={() => isOpen && setIsOpen(false)}
         className={cn(
-          'transition-all duration-300 w-fit overflow-hidden absolute top-0 left-0 z-10 bg-gray-200 sm:rounded-lg rounded-xl',
+          'transition-all duration-300 w-fit overflow-hidden absolute top-0 left-0 z-10 bg-gray-700 dark:bg-gray-200 sm:rounded-lg rounded-xl',
         )}
         style={{ height: `${isOpen ? languages.length * 100 : 100}%` }}
       >
@@ -33,10 +33,10 @@ export function LangButton() {
                 id !== currentLanguage && toggleLanguage(id)
               }}
             >
-              <span>{key}</span>
+              <span className="text-gray-50 dark:text-gray-700">{key}</span>
               <ChevronDown
                 className={cn(
-                  'transition-transform duration-300 size-4 2md:size-5',
+                  'transition-transform duration-300 size-4 2md:size-5 text-gray-50 dark:text-gray-700',
                   {
                     '[transform:rotateX(3.142rad)]': isOpen,
                     hidden: id !== currentLanguage,

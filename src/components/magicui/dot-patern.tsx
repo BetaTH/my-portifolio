@@ -30,7 +30,7 @@ export function DotPattern({
     <svg
       aria-hidden="true"
       className={cn(
-        'pointer-events-none absolute inset-0 h-full w-full fill-neutral-400/20',
+        'pointer-events-none absolute inset-0 h-full w-full dark:fill-neutral-400/20 fill-neutral-400/40',
         className,
       )}
       {...props}
@@ -52,11 +52,11 @@ export function DotPattern({
       <svg
         aria-hidden="true"
         className={cn(
-          'pointer-events-none absolute inset-0 h-full w-full fill-primary/40',
+          'pointer-events-none absolute inset-0 h-full w-full dark:fill-primary/50 fill-primary',
           'animate-dot-pattern-shimmer',
           '[mask-image:linear-gradient(to_right,transparent,white_30%,white_70%,transparent)]',
-          '[mask-size:25%_100%]',
-          '2md:[mask-size:35%_100%]',
+          '[mask-size:30%_100%]',
+          '2md:[mask-size:40%_100%]',
           '[mask-repeat:no-repeat]',
         )}
       >

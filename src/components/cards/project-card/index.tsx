@@ -26,7 +26,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        'p-3 relative bg-gray-800/90 border-gray-200/50 transition-all duration-300 rounded-xl border flex gap-4 items-center h-[29.75rem] flex-col hover:border-primary',
+        'p-3 relative bg-gray-150 shadow-sm dark:shadow-white/10 dark:bg-gray-800 border-gray-200 dark:border-gray-700 transition-all duration-300 rounded-xl border flex gap-4 items-center h-[29.75rem] flex-col hover:border-primary dark:hover:border-primary',
         className,
       )}
       {...props}
@@ -44,7 +44,9 @@ export function ProjectCard({
         />
       </div>
       <div className="flex flex-col h-full w-full gap-5 sm:gap-[0.875rem]">
-        <h4 className="text-title text-3xl/8 ">{project.title}</h4>
+        <h4 className="dark:text-title text-body text-3xl/8 ">
+          {project.title}
+        </h4>
 
         <P className="text-sm/4 sm:text-base/4 sm:tracking-[0em] line-clamp-[9]">
           {project.description[locale]}
@@ -54,7 +56,7 @@ export function ProjectCard({
           <LinkButton
             href={project.linkCode}
             target="_blank"
-            className="2md:text-lg/6 text-title"
+            className="2md:text-lg/6 dark:text-title text-body"
           >
             <IconGit className="w-5 h-5" />
             {t('buttons.code')}
@@ -63,7 +65,7 @@ export function ProjectCard({
             <LinkButton
               target="_blank"
               href={project.linkDeploy}
-              className="2md:text-lg/6 text-title"
+              className="2md:text-lg/6 dark:text-title text-body"
             >
               <IconDeploy className="w-5 h-5" />
               {t('buttons.deploy')}

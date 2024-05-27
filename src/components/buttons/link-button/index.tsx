@@ -21,7 +21,7 @@ export function LinkButton({
       href={href}
       {...props}
       className={cn(
-        'text-gray-dark-600 flex items-center gap-2 font-medium text-base 2md:text-2xl hover:text-primary transition-colors',
+        'dark:text-body-text text-body-text-light flex items-center gap-2 font-medium text-base 2md:text-2xl hover:text-primary transition-colors',
         className,
       )}
     >

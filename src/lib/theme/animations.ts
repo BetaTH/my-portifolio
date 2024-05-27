@@ -75,16 +75,16 @@ export const keyframes = {
   },
   'dot-pattern-shimmer': {
     '0%': {
-      'mask-position': '-25% 0%',
-      '-webkit-mask-position': '-25% 0%',
+      'mask-position': '-30% 0%',
+      '-webkit-mask-position': '-30% 0%',
     },
     '50%': {
-      'mask-position': '125% 0%',
-      '-webkit-mask-position': '125% 0%',
+      'mask-position': '130% 0%',
+      '-webkit-mask-position': '130% 0%',
     },
     '100%': {
-      'mask-position': '-25% 0%',
-      '-webkit-mask-position': '-25% 0%',
+      'mask-position': '-30% 0%',
+      '-webkit-mask-position': '-30% 0%',
     },
   },
 }
@@ -97,5 +97,5 @@ export const animation = {
   'move-from-left': 'move-from-left 0.5s ease-out',
   'move-from-right': 'move-from-right 0.5s ease-out',
   opacity: 'opacity 0.5s ease-out',
-  'dot-pattern-shimmer': 'dot-pattern-shimmer 8s ease-out infinite 0s',
+  'dot-pattern-shimmer': 'dot-pattern-shimmer 9s ease-in-out infinite 0s',
 }

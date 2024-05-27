@@ -40,14 +40,14 @@ export default async function Home({ params }: { params: { locale: string } }) {
   return (
     <main
       id={'home'}
-      className="bg-body z-0 relative pt-[4.75rem] 2md:pt-[4.5rem]"
+      className="dark:bg-body bg-gray-50 z-0 relative pt-[4.75rem] 2md:pt-[4.5rem]"
     >
       <DotPattern
         width={25}
         height={25}
         className={cn(
           '-z-10',
-          '[mask-image:linear-gradient(to_right,transparent_0%,white_15%,white_85%,transparent_100%)]',
+          '[mask-image:linear-gradient(to_right,transparent_0%,white_20%,white_80%,transparent_100%)]',
         )}
       />
       <Header />
@@ -55,16 +55,16 @@ export default async function Home({ params }: { params: { locale: string } }) {
         <div className="mx-auto w-[65rem] max-w-full">
           <section className="py-12 flex justify-between items-center gap-9 md:flex-col-reverse overflow-hidden">
             <div className="w-[37rem] max-w-full flex flex-col gap-[2.125rem]">
-              <h1 className="text-[2.125rem]/[2.25rem] font-semibold text-title animate-fade-in-left md:delay-200 fill-mode-forwards opacity-0">
+              <h1 className="text-[2.125rem]/[2.25rem] font-semibold dark:text-title text-body animate-fade-in-left md:delay-200 fill-mode-forwards opacity-0">
                 {t('hero.title01')}{' '}
                 <span className="text-primary">{t('hero.title02')} </span>
                 {t('hero.title03')}
                 <br />
                 <span className="text-primary">{t('hero.title04')}</span>
               </h1>
-              <P className="animate-fade-in-left delay-200 md:[animation-delay:400ms] fill-mode-forwards opacity-0">
-                {t('hero.descripiton')}
-              </P>
+              <div className="animate-fade-in-left delay-200 md:[animation-delay:400ms] fill-mode-forwards opacity-0">
+                <P>{t('hero.descripiton')}</P>
+              </div>
               <SocialCard className="animate-fade-in-left [animation-delay:400ms] md:[animation-delay:600ms] fill-mode-forwards opacity-0" />
             </div>
             <Image
@@ -106,7 +106,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
           </Section>
           <Section id="projects" title={t('projects.name')}>
             <ProjectsCarousel data={data} locale={locale} />
-            <h3 className="text-title text-[1.625rem]/[1.625rem] font-medium">
+            <h3 className="dark:text-title text-body text-[1.625rem]/[1.625rem] font-medium">
               {t('projects.development')}
             </h3>
             <div className="w-[50.375rem] gap-5 2md:w-full flex flex-wrap justify-center">
@@ -154,7 +154,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
           <p className="text-base text-body-text mt-8 mb-3 font-sans">
             {t('contact.text03')}
           </p>
-          <SocialCard />
+          <SocialCard buttonClassName="text-gray-500" />
         </section>
         <AnimatedGridPattern
           numSquares={30}

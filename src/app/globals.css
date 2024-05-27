@@ -10,6 +10,13 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  span p h1 h2 h3{
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
   :root {
     --color-black: 255 255 255; 
     --color-white: 0 0 0;
@@ -45,13 +52,6 @@
     }
   }
 
-
-
-  /* html {
-    scroll-behavior: smooth;
-    
-  } */
-
   html {
     @apply h-full scroll-smooth;
     font-size: calc(100vw / 390 * 16);
@@ -76,4 +76,9 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.slick-list {
+  margin: -4rem 0rem !important;
+  padding: 4rem 0rem !important;
 }

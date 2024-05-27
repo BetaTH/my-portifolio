@@ -24,7 +24,7 @@ export function SwitchTheme({ className }: SwitchThemeProps) {
     <button
       disabled={!mounted}
       className={cn(
-        'bg-gray-200 h-fit p-1 w-fit disabled:bg-gray-200/50 rounded-full',
+        'dark:bg-gray-200 bg-gray-700 h-fit p-1 w-fit rounded-full ',
         className,
       )}
       onClick={() =>
@@ -34,27 +34,21 @@ export function SwitchTheme({ className }: SwitchThemeProps) {
     >
       <div className="w-full flex items-center z-0 justify-center relative">
         <IconSun
-          className={cn(
-            'size-4 m-1 transition-all duration-300 dark:text-gray-600 text-violet-500',
-            {
-              'text-gray-600 dark:text-gray-600': !mounted,
-            },
-          )}
+          className={cn('size-4 m-1  dark:text-gray-600 text-violet-500', {
+            // 'text-gray-200 dark:text-gray-600': !mounted,
+          })}
         />
         <IconMoon
-          className={cn(
-            'size-4 m-1 transition-all duration-300 text-gray-600 dark:text-violet-500',
-            {
-              'text-gray-600 dark:text-gray-600': !mounted,
-            },
-          )}
+          className={cn('size-4 m-1  text-gray-200 dark:text-violet-500', {
+            // 'text-gray-200 dark:text-gray-600': !mounted,
+          })}
         />
         <div
           className={cn(
-            'size-6 -z-10 bg-body left-0 rounded-full hidden absolute transition-transform duration-300 dark:translate-x-full',
-            {
-              block: mounted,
-            },
+            'size-6 -z-10 bg-title dark:bg-body left-0 rounded-full absolute transition-transform duration-300 dark:translate-x-full',
+            // {
+            //   block: mounted,
+            // },
           )}
         />
       </div>

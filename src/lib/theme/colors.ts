@@ -8,12 +8,15 @@ export const colors = {
   title: '#FFFFFF',
   'body-text': '#D1D5DB',
   'body-text-02': '#E6E6E6',
+  'body-text-light': '#6A6C6F',
+  'body-text-02-light': '#848484',
   gray: {
     dark: {
       600: '#D1D5DB',
     },
     50: '#F9FAFB',
     100: '#F3F4F6',
+    150: '#EFF0F0',
     200: '#E5E7EB',
     500: '#ABB2BF',
     600: '#4B5563',
