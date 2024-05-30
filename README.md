@@ -42,7 +42,7 @@ O principal destaque desse projeto é o fluxo de backend criado inteiramente com
 - [x] Fluxo de autenticação para acessar a pagina de admin e editar projetos
 - [x] Internacinalização
 - [x] Switch entre tema claro e escuro
-- [x] Acesso ai direto ao meu currículo (resumo)
+- [x] Acesso direto ao meu currículo (resumo)
 - [x] Carrosel com a biblitoteca react slick
 
 ## 🔧 Rodando o Projeto
